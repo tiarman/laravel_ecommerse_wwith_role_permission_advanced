@@ -152,6 +152,20 @@
               </ul>
             </li>
           @endif
+          @if(\App\Helper\CustomHelper::canView('Create Role|Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+            <li class="has_sub">
+              <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span>Brands <span
+                    class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+              <ul class="list-unstyled">
+                {{--  @if(\App\Helper\CustomHelper::canView('Create Role', 'Super Admin'))
+                  <li><a href="{{ route('childcategory.create') }}">Create Child Category</a></li>
+                @endif  --}}
+                @if(\App\Helper\CustomHelper::canView('Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+                  <li><a href="{{ route('brand.list') }}">List of Brand</a></li>
+                @endif
+              </ul>
+            </li>
+          @endif
         </ul>
       </div>
       <div class="clearfix"></div>

@@ -18,4 +18,5 @@ class Brand extends Model
     ];
 
     public static $statusArrays = ['active', 'inactive'];
+    public static $frontPageArrays = ['yes', 'no'];
 }

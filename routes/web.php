@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChildCategoryController;
 use App\Http\Controllers\PermissionController;
@@ -41,6 +42,7 @@ Route::middleware([
     Route::post('/update/category/status', [CategoriesController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.category.status');
     Route::post('/update/subcategory/status', [SubCategoryController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.subcategory.status');
     Route::post('/update/childcategory/status', [ChildCategoryController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.childcategory.status');
+    Route::post('/update/brand/status', [BrandController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.brand.status');
   });
 
 
@@ -98,6 +100,16 @@ Route::middleware([
         Route::delete('/destroy', [ChildCategoryController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete User')->name('destroy');
         Route::get('/list', [ChildCategoryController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
       });
+
+        #Brand
+        Route::prefix('brand')->name('brand.')->group(function () {
+            Route::get('/create', [BrandController::class, 'create'])->middleware('role_or_permission:Super Admin|Create User')->name('create');
+            Route::post('/store', [BrandController::class, 'store'])->middleware('role_or_permission:Super Admin|Create User|Manage User')->name('store');
+            Route::get('/manage/{id}', [BrandController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage User')->name('manage');
+            Route::get('/{id}/view', [BrandController::class, 'view'])->middleware('role_or_permission:Super Admin|View User')->name('view');
+            Route::delete('/destroy', [BrandController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete User')->name('destroy');
+            Route::get('/list', [BrandController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
+          });
 
 
 });
