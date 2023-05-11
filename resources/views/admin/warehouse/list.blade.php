@@ -22,7 +22,7 @@
             <div class="text-center">
                 <span class="btn btn-sm btn-primary btn-add" style="cursor: pointer"
                  title="Delete"><i class="fa fa-plus-circle">
-                    <span> Add Child Category <span class="pull-right"></span> </span></i></span>
+                    <span> Add Ware Huse <span class="pull-right"></span> </span></i></span>
             </div>
 
               <div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="addModel"
@@ -30,31 +30,31 @@
            <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
                <div class="modal-header">
-                 <h4>Add Child Category</h4>
+                 <h4>Add Ware Huse</h4>
                </div>
                <div class="modal-body">
-                <form action="{{ route('childcategory.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('warehouse.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
 
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label class="control-label">Child Category Name <span class="text-danger">*</span></label>
-                          <input type="text" name="childcategory_name" placeholder="Enter sub category name" value="{{ old('childcategory_name') }}"
-                                 class="form-control @error('childcategory_name') is-invalid @enderror" required>
-                          @error('childcategory_name')
-                          <strong class="text-danger">{{ $errors->first('childcategory_name') }}</strong>
+                          <label class="control-label">Ware Huse Name <span class="text-danger">*</span></label>
+                          <input type="text" name="warehouse_name" placeholder="Enter warehouse name" value="{{ old('warehouse_name') }}"
+                                 class="form-control @error('warehouse_name') is-invalid @enderror" required>
+                          @error('warehouse_name')
+                          <strong class="text-danger">{{ $errors->first('warehouse_name') }}</strong>
                           @enderror
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label class="control-label">Child Category Slug <span class="text-danger">*</span></label>
-                          <input type="text" name="childcategory_slug" placeholder="Enter sub category slug" value="{{ old('childcategory_slug') }}"
-                                 class="form-control @error('childcategory_slug') is-invalid @enderror" required>
-                          @error('childcategory_slug')
-                          <strong class="text-danger">{{ $errors->first('childcategory_slug') }}</strong>
+                          <label class="control-label">Ware Huse Address <span class="text-danger">*</span></label>
+                          <input type="text" name="warehouse_address" placeholder="Enter sub category slug" value="{{ old('warehouse_address') }}"
+                                 class="form-control @error('warehouse_address') is-invalid @enderror" required>
+                          @error('warehouse_address')
+                          <strong class="text-danger">{{ $errors->first('warehouse_address') }}</strong>
                           @enderror
                         </div>
                       </div>
@@ -62,42 +62,20 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">Category<span class="text-danger">*</span></label>
-                                <select name="category_id" required class="form-control @error('category_id') is-invalid @enderror">
-                                    <option value="">Choose a category Status</option>
-                                    @foreach($categories as $e)
-                                        <option value="{{ $e->id }}" @if(old('category_id') == $e->category_name) selected @endif>{{ ucfirst($e->category_name) }}</option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                <strong class="text-danger">{{ $errors->first('category_id') }}</strong>
-                                @enderror
+                              <label class="control-label">Ware Huse Phone <span class="text-danger">*</span></label>
+                              <input type="mobile" name="warehouse_phone" placeholder="Enter sub category slug" value="{{ old('warehouse_phone') }}"
+                                     class="form-control @error('warehouse_phone') is-invalid @enderror" required>
+                              @error('warehouse_phone')
+                              <strong class="text-danger">{{ $errors->first('warehouse_phone') }}</strong>
+                              @enderror
                             </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="control-label">Sub Category<span class="text-danger">*</span></label>
-                                <select name="subcategory_id" required class="form-control @error('subcategory_id') is-invalid @enderror">
-                                    <option value="">Choose a category Status</option>
-                                    @foreach($subcategories as $e)
-                                        <option value="{{ $e->id }}" @if(old('subcategory_id') == $e->subcategory_name) selected @endif>{{ ucfirst($e->subcategory_name) }}</option>
-                                    @endforeach
-                                </select>
-                                @error('subcategory_id')
-                                <strong class="text-danger">{{ $errors->first('subcategory_id') }}</strong>
-                                @enderror
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
+                          </div>
+                          <div class="col-sm-6">
                             <div class="form-group">
                               <label class="control-label">Status<span class="text-danger">*</span></label>
                               <select name="status" required class="form-control @error('status') is-invalid @enderror">
                                 <option value="">Choose a statue</option>
-                                @foreach(\App\Models\SubCategory::$statusArrays as $statys)
+                                @foreach(\App\Models\WareHouse::$statusArrays as $statys)
                                   <option value="{{ $statys }}"
                                           @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
                                 @endforeach
@@ -107,6 +85,7 @@
                               @enderror
                             </div>
                           </div>
+
                     </div>
                     <div class="row mt-4">
                       <div class="col-sm-12 text-right">
@@ -130,7 +109,7 @@
 
 
             <header class="panel-heading mt-5">
-              <h2 class="panel-title">List of Categories</h2>
+              <h2 class="panel-title">List of Ware House</h2>
 
             </header>
             <div class="panel-body">
@@ -141,7 +120,7 @@
               {{--  @if(\App\Helper\CustomHelper::canView('Create User', 'Super Admin'))
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-xl-12 text-right mb-3">
-                    <a href="{{ route('category.create') }}" class="brn btn-success btn-sm">Create new Category</a>
+                    <a href="{{ route('category.create') }}" class="brn btn-success btn-sm">Create new Ware House</a>
                   </div>
                 </div>
               @endif  --}}
@@ -152,10 +131,9 @@
                 <thead>
                 <tr>
                   <th width="10">#</th>
-                  <th>Category Name</th>
-                  <th>Sub Category Name</th>
-                  <th>Child Category Name</th>
-                  <th>Child Category Slug</th>
+                  <th>Ware House Name</th>
+                  <th>Ware Huse Address</th>
+                  <th>Ware Huse Phone</th>
                   <th width="200">Created At</th>
                   <th width="50">Status</th>
                   @if(\App\Helper\CustomHelper::canView('Manage User|Delete User', 'Super Admin'))
@@ -167,10 +145,9 @@
                 @foreach($data as $key => $val)
                   <tr class="@if(($key%2) == 0)gradeX @else gradeC @endif">
                     <td class="p-1">{{ ($key+1) }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->category?->category_name }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->subcategory?->subcategory_name }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->childcategory_name }}</td>
-                    <td class="p-1">{{ $val->childcategory_slug }}</td>
+                    <td class="p-1 text-capitalize">{{ $val->warehouse_name }}</td>
+                    <td class="p-1 text-capitalize">{{ $val->warehouse_address }}</td>
+                    <td class="p-1">{{ $val->warehouse_phone }}</td>
                     <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
 
 
@@ -179,7 +156,7 @@
                     <td class="text-capitalize p-1" width="100">
                         <div class="onoffswitch">
                             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                   @if($val->status == \App\Models\ChildCategory::$statusArrays[0])
+                                   @if($val->status == \App\Models\WareHouse::$statusArrays[0])
                                        checked
                                    @endif
                                    data-id="{{ $val->id }}"
@@ -198,7 +175,7 @@
                     @if(\App\Helper\CustomHelper::canView('Manage User|Delete User', 'Super Admin'))
                       <td class="center hidden-phone p-1" width="100">
                         @if(\App\Helper\CustomHelper::canView('Manage User', 'Super Admin'))
-                          <a href="{{ route('childcategory.manage', $val->id) }}" class="btn btn-sm btn-success" title="Edit"> <i
+                          <a href="{{ route('warehouse.manage', $val->id) }}" class="btn btn-sm btn-success" title="Edit"> <i
                               class="fa fa-edit"></i> </a>
                         @endif
                         @if(\App\Helper\CustomHelper::canView('Delete User', 'Super Admin'))
@@ -229,10 +206,10 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4>Delete Child Category</h4>
+          <h4>Delete Ware Huse</h4>
         </div>
         <div class="modal-body">
-          <strong>Are you sure to delete this Child Category?</strong>
+          <strong>Are you sure to delete this Ware Huse?</strong>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">No</button>
@@ -282,7 +259,7 @@
           status = 'active';
         }
         $.ajax({
-          url: "{{ route('ajax.update.childcategory.status') }}",
+          url: "{{ route('ajax.update.warehouse.status') }}",
           method: "post",
           dataType: "html",
           data: {'id': id, 'status': status},
@@ -298,7 +275,7 @@
         var pid = $(this).data('id');
         var $this = $('.delete_' + pid)
         $.ajax({
-          url: "{{ route('childcategory.destroy') }}",
+          url: "{{ route('warehouse.destroy') }}",
           method: "delete",
           dataType: "html",
           data: {id: pid},

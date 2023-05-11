@@ -2,58 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\CustomHelper;
 use App\Helper\RedirectHelper;
-use App\Models\Categories;
+use App\Models\WareHouse;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
-class CategoriesController extends Controller
+class WareHouseController extends Controller
 {
 
     public function index(){
-        $data['data'] = Categories::orderby('created_at', 'desc')->paginate(20);
-        return view('admin.category.list', $data);
+        $data['data'] = WareHouse::orderby('created_at', 'desc')->paginate(20);
+        // return $categories;
+        return view('admin.warehouse.list', $data);
     }
     public function manage($id = null) {
-        if ($data['category'] = Categories::find($id)) {
-          return view('admin.category.manage', $data);
+        if ($data['warehouse'] = WareHouse::find($id)) {
+          return view('admin.warehouse.manage', $data);
         }
-        return RedirectHelper::routeWarning('category.list', '<strong>Sorry!!!</strong> User not found');
+        return RedirectHelper::routeWarning('warehouse.list', '<strong>Sorry!!!</strong> User not found');
       }
 
     public function create($id = null){
-        return view('admin.category.create');
+        return view('admin.warehouse.create');
     }
 
     public function store(Request $request){
         // return $request;
         $message = '<strong>Congratulations!!!</strong> Category successfully';
         $rules = [
-            'category_name' => 'required|string',
-            'category_slug' => 'nullable|string',
-            'status' => ['required', Rule::in(\App\Models\Categories::$statusArrays)],
-            // 'status' = ['required|string', Rule::in(\App\Models\Categories::$statusArrays)],
+            'warehouse_name' => 'required|string',
+            'warehouse_address' => 'required|string',
+            'warehouse_phone' => 'nullable|string',
+            'status' => ['required', Rule::in(\App\Models\WareHouse::$statusArrays)],
+            // 'status' = ['required|string', Rule::in(\App\Models\WareHouse::$statusArrays)],
         ];
 
         if ($request->has('id')) {
-            $category = Categories::find($request->id);
+            $warehouse = WareHouse::find($request->id);
             $message = $message . ' updated';
           } else {
-            $category = new Categories();
+            $warehouse = new WareHouse();
             $message = $message . ' created';
           }
           $request->validate($rules);
 
           try{
-            $category->category_name = $request->category_name;
-            $category->category_slug = $request->category_slug;
-            $category->status = $request->status;
+            $warehouse->warehouse_name = $request->warehouse_name;
+            $warehouse->warehouse_address = $request->warehouse_address;
+            $warehouse->warehouse_phone = $request->warehouse_phone;
+            $warehouse->status = $request->status;
 
-            if ($category->save()) {
-                return RedirectHelper::routeSuccess('category.list', $message);
+            if ($warehouse->save()) {
+                return RedirectHelper::routeSuccess('warehouse.list', $message);
               }
             return RedirectHelper::backWithInput();
 
@@ -69,7 +70,7 @@ class CategoriesController extends Controller
     public function destroy(Request $request) {
         $id = $request->post('id');
         try {
-          $user = Categories::find($id);
+          $user = WareHouse::find($id);
           if ($user->delete()) {
             return 'success';
           }
@@ -87,21 +88,10 @@ class CategoriesController extends Controller
       $id = $request->post('id');
       $postStatus = $request->post('status');
       $status = strtolower($postStatus);
-      $user = Categories::find($id);
+      $user = WareHouse::find($id);
       if ($user->update(['status' => $status])) {
         return "success";
       }
     }
   }
-
-
-//   get child category
-public function getChildCategory($id){
-$data = DB::table('child_categories')->where('subcategory_id', $id)->get();
-// return $data;
-return response()->json($data);
-}
-
-
-
 }

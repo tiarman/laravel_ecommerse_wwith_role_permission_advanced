@@ -22,7 +22,7 @@
             <div class="text-center">
                 <span class="btn btn-sm btn-primary btn-add" style="cursor: pointer"
                  title="Delete"><i class="fa fa-plus-circle">
-                    <span> Add Child Category <span class="pull-right"></span> </span></i></span>
+                    <span> Add Pickup Point <span class="pull-right"></span> </span></i></span>
             </div>
 
               <div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="addModel"
@@ -30,83 +30,73 @@
            <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
                <div class="modal-header">
-                 <h4>Add Child Category</h4>
+                 <h4>Add Pickup Point</h4>
                </div>
                <div class="modal-body">
-                <form action="{{ route('childcategory.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('pickuppoint.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
 
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label class="control-label">Child Category Name <span class="text-danger">*</span></label>
-                          <input type="text" name="childcategory_name" placeholder="Enter sub category name" value="{{ old('childcategory_name') }}"
-                                 class="form-control @error('childcategory_name') is-invalid @enderror" required>
-                          @error('childcategory_name')
-                          <strong class="text-danger">{{ $errors->first('childcategory_name') }}</strong>
+                          <label class="control-label">Pickup Point Name <span class="text-danger">*</span></label>
+                          <input type="text" name="pickup_point_name" placeholder="Enter sub category name" value="{{ old('pickup_point_name') }}"
+                                 class="form-control @error('pickup_point_name') is-invalid @enderror" required>
+                          @error('pickup_point_name')
+                          <strong class="text-danger">{{ $errors->first('pickup_point_name') }}</strong>
                           @enderror
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label class="control-label">Child Category Slug <span class="text-danger">*</span></label>
-                          <input type="text" name="childcategory_slug" placeholder="Enter sub category slug" value="{{ old('childcategory_slug') }}"
-                                 class="form-control @error('childcategory_slug') is-invalid @enderror" required>
-                          @error('childcategory_slug')
-                          <strong class="text-danger">{{ $errors->first('childcategory_slug') }}</strong>
+                          <label class="control-label">Pickup Point Address <span class="text-danger">*</span></label>
+                          <input type="text" name="pickup_point_address" placeholder="Enter sub category slug" value="{{ old('pickup_point_address') }}"
+                                 class="form-control @error('pickup_point_address') is-invalid @enderror" required>
+                          @error('pickup_point_address')
+                          <strong class="text-danger">{{ $errors->first('pickup_point_address') }}</strong>
                           @enderror
                         </div>
                       </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="control-label">Category<span class="text-danger">*</span></label>
-                                <select name="category_id" required class="form-control @error('category_id') is-invalid @enderror">
-                                    <option value="">Choose a category Status</option>
-                                    @foreach($categories as $e)
-                                        <option value="{{ $e->id }}" @if(old('category_id') == $e->category_name) selected @endif>{{ ucfirst($e->category_name) }}</option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                <strong class="text-danger">{{ $errors->first('category_id') }}</strong>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="control-label">Sub Category<span class="text-danger">*</span></label>
-                                <select name="subcategory_id" required class="form-control @error('subcategory_id') is-invalid @enderror">
-                                    <option value="">Choose a category Status</option>
-                                    @foreach($subcategories as $e)
-                                        <option value="{{ $e->id }}" @if(old('subcategory_id') == $e->subcategory_name) selected @endif>{{ ucfirst($e->subcategory_name) }}</option>
-                                    @endforeach
-                                </select>
-                                @error('subcategory_id')
-                                <strong class="text-danger">{{ $errors->first('subcategory_id') }}</strong>
-                                @enderror
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                              <label class="control-label">Status<span class="text-danger">*</span></label>
-                              <select name="status" required class="form-control @error('status') is-invalid @enderror">
-                                <option value="">Choose a statue</option>
-                                @foreach(\App\Models\SubCategory::$statusArrays as $statys)
-                                  <option value="{{ $statys }}"
-                                          @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
-                                @endforeach
-                              </select>
-                              @error('status')
-                              <strong class="text-danger">{{ $errors->first('status') }}</strong>
-                              @enderror
-                            </div>
+                          <div class="form-group">
+                            <label class="control-label">Pickup Point Phone <span class="text-danger">*</span></label>
+                            <input type="phone" name="pickup_point_phone" placeholder="Enter sub category name" value="{{ old('pickup_point_phone') }}"
+                                   class="form-control @error('pickup_point_phone') is-invalid @enderror" required>
+                            @error('pickup_point_phone')
+                            <strong class="text-danger">{{ $errors->first('pickup_point_phone') }}</strong>
+                            @enderror
                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label class="control-label">Pickup Point Phone Two <span class="text-danger">*</span></label>
+                            <input type="phone" name="pickup_point_phone_two" placeholder="Enter sub category slug" value="{{ old('pickup_point_phone_two') }}"
+                                   class="form-control @error('pickup_point_phone_two') is-invalid @enderror" required>
+                            @error('pickup_point_phone_two')
+                            <strong class="text-danger">{{ $errors->first('pickup_point_phone_two') }}</strong>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label class="control-label">Status<span class="text-danger">*</span></label>
+                          <select name="status" required class="form-control @error('status') is-invalid @enderror">
+                            <option value="">Choose a statue</option>
+                            @foreach(\App\Models\PickupPoint::$statusArrays as $statys)
+                              <option value="{{ $statys }}"
+                                      @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
+                            @endforeach
+                          </select>
+                          @error('status')
+                          <strong class="text-danger">{{ $errors->first('status') }}</strong>
+                          @enderror
+                        </div>
+                      </div>
                     </div>
                     <div class="row mt-4">
                       <div class="col-sm-12 text-right">
@@ -130,7 +120,7 @@
 
 
             <header class="panel-heading mt-5">
-              <h2 class="panel-title">List of Categories</h2>
+              <h2 class="panel-title">List of Pickup Point</h2>
 
             </header>
             <div class="panel-body">
@@ -152,11 +142,11 @@
                 <thead>
                 <tr>
                   <th width="10">#</th>
-                  <th>Category Name</th>
-                  <th>Sub Category Name</th>
-                  <th>Child Category Name</th>
-                  <th>Child Category Slug</th>
-                  <th width="200">Created At</th>
+                  <th>Pickup Point Name</th>
+                  <th>Pickup Point Address</th>
+                  <th>Pickup Point Phone</th>
+                  <th>Pickup Point Phone Two</th>
+                  {{--  <th width="200">Created At</th>  --}}
                   <th width="50">Status</th>
                   @if(\App\Helper\CustomHelper::canView('Manage User|Delete User', 'Super Admin'))
                     <th class="hidden-phone" width="40">Option</th>
@@ -167,11 +157,11 @@
                 @foreach($data as $key => $val)
                   <tr class="@if(($key%2) == 0)gradeX @else gradeC @endif">
                     <td class="p-1">{{ ($key+1) }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->category?->category_name }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->subcategory?->subcategory_name }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->childcategory_name }}</td>
-                    <td class="p-1">{{ $val->childcategory_slug }}</td>
-                    <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
+                    <td class="p-1 text-capitalize">{{ $val->pickup_point_name }}</td>
+                    <td class="p-1 text-capitalize">{{ $val->pickup_point_address }}</td>
+                    <td class="p-1">{{ $val->pickup_point_phone }}</td>
+                    <td class="p-1">{{ $val->pickup_point_phone_two }}</td>
+                    {{--  <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>  --}}
 
 
 
@@ -179,7 +169,7 @@
                     <td class="text-capitalize p-1" width="100">
                         <div class="onoffswitch">
                             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                   @if($val->status == \App\Models\ChildCategory::$statusArrays[0])
+                                   @if($val->status == \App\Models\PickupPoint::$statusArrays[0])
                                        checked
                                    @endif
                                    data-id="{{ $val->id }}"
@@ -198,7 +188,7 @@
                     @if(\App\Helper\CustomHelper::canView('Manage User|Delete User', 'Super Admin'))
                       <td class="center hidden-phone p-1" width="100">
                         @if(\App\Helper\CustomHelper::canView('Manage User', 'Super Admin'))
-                          <a href="{{ route('childcategory.manage', $val->id) }}" class="btn btn-sm btn-success" title="Edit"> <i
+                          <a href="{{ route('pickuppoint.manage', $val->id) }}" class="btn btn-sm btn-success" title="Edit"> <i
                               class="fa fa-edit"></i> </a>
                         @endif
                         @if(\App\Helper\CustomHelper::canView('Delete User', 'Super Admin'))
@@ -229,10 +219,10 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4>Delete Child Category</h4>
+          <h4>Delete Pickup Point</h4>
         </div>
         <div class="modal-body">
-          <strong>Are you sure to delete this Child Category?</strong>
+          <strong>Are you sure to delete this Pickup Point?</strong>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">No</button>
@@ -282,7 +272,7 @@
           status = 'active';
         }
         $.ajax({
-          url: "{{ route('ajax.update.childcategory.status') }}",
+          url: "{{ route('ajax.update.pickuppoint.status') }}",
           method: "post",
           dataType: "html",
           data: {'id': id, 'status': status},
@@ -298,7 +288,7 @@
         var pid = $(this).data('id');
         var $this = $('.delete_' + pid)
         $.ajax({
-          url: "{{ route('childcategory.destroy') }}",
+          url: "{{ route('pickuppoint.destroy') }}",
           method: "delete",
           dataType: "html",
           data: {id: pid},

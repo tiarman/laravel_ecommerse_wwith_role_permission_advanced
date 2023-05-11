@@ -22,7 +22,7 @@
             <div class="text-center">
                 <span class="btn btn-sm btn-primary btn-add" style="cursor: pointer"
                  title="Delete"><i class="fa fa-plus-circle">
-                    <span> Add Child Category <span class="pull-right"></span> </span></i></span>
+                    <span> Add Coupon <span class="pull-right"></span> </span></i></span>
             </div>
 
               <div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="addModel"
@@ -30,83 +30,78 @@
            <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
                <div class="modal-header">
-                 <h4>Add Child Category</h4>
+                 <h4>Add Coupon</h4>
                </div>
                <div class="modal-body">
-                <form action="{{ route('childcategory.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('coupon.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
 
                     <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label class="control-label">Child Category Name <span class="text-danger">*</span></label>
-                          <input type="text" name="childcategory_name" placeholder="Enter sub category name" value="{{ old('childcategory_name') }}"
-                                 class="form-control @error('childcategory_name') is-invalid @enderror" required>
-                          @error('childcategory_name')
-                          <strong class="text-danger">{{ $errors->first('childcategory_name') }}</strong>
-                          @enderror
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label class="control-label">Child Category Slug <span class="text-danger">*</span></label>
-                          <input type="text" name="childcategory_slug" placeholder="Enter sub category slug" value="{{ old('childcategory_slug') }}"
-                                 class="form-control @error('childcategory_slug') is-invalid @enderror" required>
-                          @error('childcategory_slug')
-                          <strong class="text-danger">{{ $errors->first('childcategory_slug') }}</strong>
-                          @enderror
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="control-label">Category<span class="text-danger">*</span></label>
-                                <select name="category_id" required class="form-control @error('category_id') is-invalid @enderror">
-                                    <option value="">Choose a category Status</option>
-                                    @foreach($categories as $e)
-                                        <option value="{{ $e->id }}" @if(old('category_id') == $e->category_name) selected @endif>{{ ucfirst($e->category_name) }}</option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                <strong class="text-danger">{{ $errors->first('category_id') }}</strong>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="control-label">Sub Category<span class="text-danger">*</span></label>
-                                <select name="subcategory_id" required class="form-control @error('subcategory_id') is-invalid @enderror">
-                                    <option value="">Choose a category Status</option>
-                                    @foreach($subcategories as $e)
-                                        <option value="{{ $e->id }}" @if(old('subcategory_id') == $e->subcategory_name) selected @endif>{{ ucfirst($e->subcategory_name) }}</option>
-                                    @endforeach
-                                </select>
-                                @error('subcategory_id')
-                                <strong class="text-danger">{{ $errors->first('subcategory_id') }}</strong>
-                                @enderror
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                              <label class="control-label">Status<span class="text-danger">*</span></label>
-                              <select name="status" required class="form-control @error('status') is-invalid @enderror">
-                                <option value="">Choose a statue</option>
-                                @foreach(\App\Models\SubCategory::$statusArrays as $statys)
-                                  <option value="{{ $statys }}"
-                                          @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
-                                @endforeach
-                              </select>
-                              @error('status')
-                              <strong class="text-danger">{{ $errors->first('status') }}</strong>
+                              <label class="control-label">Coupon Amount<span class="text-danger">*</span></label>
+                              <input type="text" name="coupon_amount" placeholder="Enter sub category name" value="{{ old('coupon_amount') }}"
+                                     class="form-control @error('coupon_amount') is-invalid @enderror" required>
+                              @error('coupon_amount')
+                              <strong class="text-danger">{{ $errors->first('coupon_amount') }}</strong>
                               @enderror
                             </div>
                           </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="control-label">Coupon Code<span class="text-danger">*</span></label>
+                          <input type="text" name="coupon_code" placeholder="Enter sub category name" value="{{ old('coupon_code') }}"
+                                 class="form-control @error('coupon_code') is-invalid @enderror" required>
+                          @error('coupon_code')
+                          <strong class="text-danger">{{ $errors->first('coupon_code') }}</strong>
+                          @enderror
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="control-label">Valid Date <span class="text-danger">*</span></label>
+                          <input type="date" name="valid_date" placeholder="Enter sub category slug" value="{{ old('valid_date') }}"
+                                 class="form-control @error('valid_date') is-invalid @enderror" required>
+                          @error('valid_date')
+                          <strong class="text-danger">{{ $errors->first('valid_date') }}</strong>
+                          @enderror
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Coupon Type<span class="text-danger">*</span></label>
+                              <select name="type" required class="form-control @error('type') is-invalid @enderror">
+                                <option value="">Choose a coupon type</option>
+                                @foreach(\App\Models\Coupon::$typeArrays as $statys)
+                                  <option value="{{ $statys }}"
+                                          @if(old('type') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
+                                @endforeach
+                              </select>
+                              @error('type')
+                              <strong class="text-danger">{{ $errors->first('type') }}</strong>
+                              @enderror
+                            </div>
+                          </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="control-label">Status<span class="text-danger">*</span></label>
+                          <select name="status" required class="form-control @error('status') is-invalid @enderror">
+                            <option value="">Choose a statue</option>
+                            @foreach(\App\Models\Coupon::$statusArrays as $statys)
+                              <option value="{{ $statys }}"
+                                      @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
+                            @endforeach
+                          </select>
+                          @error('status')
+                          <strong class="text-danger">{{ $errors->first('status') }}</strong>
+                          @enderror
+                        </div>
+                      </div>
                     </div>
                     <div class="row mt-4">
                       <div class="col-sm-12 text-right">
@@ -130,7 +125,7 @@
 
 
             <header class="panel-heading mt-5">
-              <h2 class="panel-title">List of Categories</h2>
+              <h2 class="panel-title">List of Coupon</h2>
 
             </header>
             <div class="panel-body">
@@ -152,10 +147,10 @@
                 <thead>
                 <tr>
                   <th width="10">#</th>
-                  <th>Category Name</th>
-                  <th>Sub Category Name</th>
-                  <th>Child Category Name</th>
-                  <th>Child Category Slug</th>
+                  <th>Coupon Code</th>
+                  <th>Valid Date</th>
+                  <th>Coupon Type</th>
+                  <th>Amount</th>
                   <th width="200">Created At</th>
                   <th width="50">Status</th>
                   @if(\App\Helper\CustomHelper::canView('Manage User|Delete User', 'Super Admin'))
@@ -167,10 +162,10 @@
                 @foreach($data as $key => $val)
                   <tr class="@if(($key%2) == 0)gradeX @else gradeC @endif">
                     <td class="p-1">{{ ($key+1) }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->category?->category_name }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->subcategory?->subcategory_name }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->childcategory_name }}</td>
-                    <td class="p-1">{{ $val->childcategory_slug }}</td>
+                    <td class="p-1 text-capitalize">{{ $val->coupon_code }}</td>
+                    <td class="p-1 text-capitalize">{{ $val->valid_date }}</td>
+                    <td class="p-1">{{ $val->type }}</td>
+                    <td class="p-1">{{ $val->coupon_amount }}</td>
                     <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
 
 
@@ -179,7 +174,7 @@
                     <td class="text-capitalize p-1" width="100">
                         <div class="onoffswitch">
                             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                   @if($val->status == \App\Models\ChildCategory::$statusArrays[0])
+                                   @if($val->status == \App\Models\SubCategory::$statusArrays[0])
                                        checked
                                    @endif
                                    data-id="{{ $val->id }}"
@@ -198,7 +193,7 @@
                     @if(\App\Helper\CustomHelper::canView('Manage User|Delete User', 'Super Admin'))
                       <td class="center hidden-phone p-1" width="100">
                         @if(\App\Helper\CustomHelper::canView('Manage User', 'Super Admin'))
-                          <a href="{{ route('childcategory.manage', $val->id) }}" class="btn btn-sm btn-success" title="Edit"> <i
+                          <a href="{{ route('coupon.manage', $val->id) }}" class="btn btn-sm btn-success" title="Edit"> <i
                               class="fa fa-edit"></i> </a>
                         @endif
                         @if(\App\Helper\CustomHelper::canView('Delete User', 'Super Admin'))
@@ -229,10 +224,10 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4>Delete Child Category</h4>
+          <h4>Delete Coupon</h4>
         </div>
         <div class="modal-body">
-          <strong>Are you sure to delete this Child Category?</strong>
+          <strong>Are you sure to delete this Coupon?</strong>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">No</button>
@@ -282,7 +277,7 @@
           status = 'active';
         }
         $.ajax({
-          url: "{{ route('ajax.update.childcategory.status') }}",
+          url: "{{ route('ajax.update.coupon.status') }}",
           method: "post",
           dataType: "html",
           data: {'id': id, 'status': status},
@@ -298,7 +293,7 @@
         var pid = $(this).data('id');
         var $this = $('.delete_' + pid)
         $.ajax({
-          url: "{{ route('childcategory.destroy') }}",
+          url: "{{ route('coupon.destroy') }}",
           method: "delete",
           dataType: "html",
           data: {id: pid},

@@ -166,6 +166,66 @@
               </ul>
             </li>
           @endif
+
+          @if(\App\Helper\CustomHelper::canView('Create Role|Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+          <li class="has_sub">
+            <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span>Ware House <span
+                  class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+            <ul class="list-unstyled">
+              {{--  @if(\App\Helper\CustomHelper::canView('Create Role', 'Super Admin'))
+                <li><a href="{{ route('childcategory.create') }}">Create Child Category</a></li>
+              @endif  --}}
+              @if(\App\Helper\CustomHelper::canView('Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+                <li><a href="{{ route('warehouse.list') }}">List of Warehouse</a></li>
+              @endif
+            </ul>
+          </li>
+        @endif
+
+        @if(\App\Helper\CustomHelper::canView('Create Role|Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+          <li class="has_sub">
+            <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span>Coupon <span
+                  class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+            <ul class="list-unstyled">
+              {{--  @if(\App\Helper\CustomHelper::canView('Create Role', 'Super Admin'))
+                <li><a href="{{ route('childcategory.create') }}">Create Child Category</a></li>
+              @endif  --}}
+              @if(\App\Helper\CustomHelper::canView('Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+                <li><a href="{{ route('coupon.list') }}">List of Couon</a></li>
+              @endif
+            </ul>
+          </li>
+        @endif
+        @if(\App\Helper\CustomHelper::canView('Create Role|Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+          <li class="has_sub">
+            <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span>Pickup Point<span
+                  class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+            <ul class="list-unstyled">
+              {{--  @if(\App\Helper\CustomHelper::canView('Create Role', 'Super Admin'))
+                <li><a href="{{ route('childcategory.create') }}">Create Child Category</a></li>
+              @endif  --}}
+              @if(\App\Helper\CustomHelper::canView('Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+                <li><a href="{{ route('pickuppoint.list') }}">List of Pickup Point</a></li>
+              @endif
+            </ul>
+          </li>
+        @endif
+
+
+        @if(\App\Helper\CustomHelper::canView('Create Role|Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+        <li class="has_sub">
+          <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span>Product<span
+                class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+          <ul class="list-unstyled">
+            @if(\App\Helper\CustomHelper::canView('Create Role', 'Super Admin'))
+              <li><a href="{{ route('product.create') }}">Create Product</a></li>
+            @endif
+            @if(\App\Helper\CustomHelper::canView('Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
+              <li><a href="{{ route('product.list') }}">List of Product</a></li>
+            @endif
+          </ul>
+        </li>
+      @endif
         </ul>
       </div>
       <div class="clearfix"></div>
