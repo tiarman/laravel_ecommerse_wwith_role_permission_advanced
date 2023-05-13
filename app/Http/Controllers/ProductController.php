@@ -96,11 +96,13 @@ if ($request->has('id')) {
   $request->validate($rules);
 
         try {
-            // $subcategory =DB::table('sub_categories')->where('id', $request->subcategory_id)->first();
+            $subcategory =DB::table('sub_categories')->where('id', $request->subcategory_id)->first();
             // $sub = $subcategory->category_id;
-            // return $sub;
-            $product->category_id = $request->category_id;
-            // $subcategory->subcategory = $request->category_id;
+            // return $subcategory;
+           $product->category_id = $subcategory->category_id;
+
+
+            $product->subcategory_id = $request->subcategory_id;
             // return $sub;
             $product->childcategory_id = $request->childcategory_id;
             $product->brand_id = $request->brand_id;
