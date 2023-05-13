@@ -163,18 +163,20 @@ if ($request->has('id')) {
 
                 $lastProductId = $product->id;
                 // return $lastProductId;
+                if(!$ids = $request->tag_name){
+                    return RedirectHelper::routeSuccessWithParams('product.list', $message);
 
-                $ids = $request->tag_name;
-                // return $request->tag_name;
-                // return $ids;
-                // return $request;
-                 foreach ($ids as $tag_name){
-                   DB::table('user_has_tags')->insert([
-                     'product_id' => $lastProductId,
-                     'tag_name' => $tag_name,
+                }else
+                foreach ($ids as $tag_name){
+                    DB::table('user_has_tags')->insert([
+                      'product_id' => $lastProductId,
+                      'tag_name' => $tag_name,
 
-                   ]);
-                 }
+                    ]);
+                  }
+
+
+
 
                 return RedirectHelper::routeSuccessWithParams('product.list', $message);
             }

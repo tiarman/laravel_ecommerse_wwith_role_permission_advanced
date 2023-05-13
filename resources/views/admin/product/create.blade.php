@@ -155,10 +155,10 @@
                                         <div class="form-group">
                                             <label class="control-label">Tags</label>
                                             <select multiple="multiple" name="tag_name[]" placeholder="Enter tag_name" value="{{ old('tag_name[]') }}"
-                                                   class="form-control select2 @error('tag_name') is-invalid @enderror">
+                                                   class="form-control select2 @error('tag_name[]') is-invalid @enderror">
                                             </select>
-                                            @error('tag_name')
-                                            <strong class="text-danger">{{ $errors->first('tag_name') }}</strong>
+                                            @error('tag_name[]')
+                                            <strong class="text-danger">{{ $errors->first('tag_name[]') }}</strong>
                                             @enderror
                                         </div>
                                     </div>
