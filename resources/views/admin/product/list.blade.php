@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <section class="panel">
                         <header class="panel-heading">
-                            <h2 class="panel-title">List of slider</h2>
+                            <h2 class="panel-title">List of Product</h2>
                         </header>
                         <div class="panel-body">
                             @if(session()->has('status'))
@@ -29,7 +29,7 @@
 
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-xl-12 text-right mb-3">
-                                    <a href="{{ route('admin.slider.create') }}" class="brn btn-success btn-sm">New slider</a>
+                                    <a href="{{ route('product.create') }}" class="brn btn-success btn-sm">New product</a>
                                 </div>
                             </div>
                             {{--<table class="table table-bordered table-striped mb-none" id="data-table">--}}
@@ -51,12 +51,12 @@
                                     <tr class="@if(($key%2) == 0)gradeX @else gradeC @endif">
                                         <td class="p-1">{{ ($key+1) }}</td>
                                         <td class="p-1"><img src="{{ asset($val->image) }}" style="height: 50px;"></td>
-                                        <td class="p-1">{{ $val->title }}</td>
+                                        <td class="p-1">{{ $val->name }}</td>
                                         <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
                                         <td class="text-capitalize p-1" width="100">
                                             <div class="onoffswitch">
                                                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                                       @if($val->status == \App\Models\Slider::$statusArray[0])
+                                                       @if($val->status == \App\Models\Product::$statusArrays[0])
                                                            checked
                                                        @endif
                                                        data-id="{{ $val->id }}"
@@ -68,7 +68,7 @@
                                             </div>
                                         </td>
                                         <td class="center hidden-phone p-1" width="100">
-                                            <a href="{{ route('admin.slider.manage', $val->id) }}" class="btn btn-sm btn-success"> <i class="fa fa-edit"></i> </a>
+                                            <a href="{{ route('product.manage', $val->id) }}" class="btn btn-sm btn-success"> <i class="fa fa-edit"></i> </a>
                                             <span class="btn btn-sm btn-danger btn-delete delete_{{ $val->id }}" style="cursor: pointer" data-id="{{ $val->id }}"><i class="fa fa-trash"></i></span>
                                         </td>
                                     </tr>
@@ -92,11 +92,11 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-{{--                    <h4>{{__('admin.slider.delete_user')}}</h4>--}}
-                    <h4>Delete Slider</h4>
+{{--                    <h4>{{__('admin.product.delete_user')}}</h4>--}}
+                    <h4>Delete product</h4>
                 </div>
                 <div class="modal-body">
-                    <strong>Are You Sure Delete Slider</strong>
+                    <strong>Are You Sure Delete product</strong>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">No</button>
@@ -147,7 +147,7 @@
                     status = 'active';
                 }
                 $.ajax({
-                    url: "{{ route('admin.ajax.update.slider.status') }}",
+                    url: "{{ route('ajax.update.product.status') }}",
                     method: "post",
                     dataType: "html",
                     data: {'id': id, 'status': status},
@@ -163,7 +163,7 @@
                 var pid = $(this).data('id');
                 var $this = $('.delete_' + pid)
                 $.ajax({
-                    url: "{{ route('admin.slider.destroy') }}",
+                    url: "{{ route('product.destroy') }}",
                     method: "delete",
                     dataType: "html",
                     data: {id: pid},

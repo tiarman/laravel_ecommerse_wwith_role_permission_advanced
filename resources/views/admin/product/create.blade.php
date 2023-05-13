@@ -2,6 +2,7 @@
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('assets/admin2/dist/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/css/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -57,7 +58,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Category/Sub Category<span class="text-danger">*</span></label>
-                                            <select name="subcategory_id" id="subcategory_id" required class="form-control @error('subcategory_id') is-invalid @enderror">
+                                            <select name="subcategory_id" id="subcategory_id"  class="form-control @error('subcategory_id') is-invalid @enderror">
                                                 <option value="">Choose a category Status</option>
                                                 @foreach($categories as $e)
                                                 @php
@@ -93,7 +94,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Child Category<span class="text-danger">*</span></label>
-                                            <select name="childcategory_id" id="childcategory_id" required class="form-control @error('childcategory_id') is-invalid @enderror">
+                                            <select name="childcategory_id" id="childcategory_id"  class="form-control @error('childcategory_id') is-invalid @enderror">
                                                 <option value="">Choose a category Status</option>
                                                 @foreach($childcategory as $e)
                                                     <option value="{{ $e->id }}" @if(old('childcategory_id') == $e->childcategory_name) selected @endif>{{ ucfirst($e->childcategory_name) }}</option>
@@ -111,7 +112,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Brand<span class="text-danger">*</span></label>
-                                            <select name="brand_id" id="brand_id" required class="form-control @error('brand_id') is-invalid @enderror">
+                                            <select name="brand_id" id="brand_id"  class="form-control @error('brand_id') is-invalid @enderror">
                                                 <option value="">Choose a category Status</option>
                                                 @foreach($brand as $e)
                                                     <option value="{{ $e->id }}" @if(old('brand_id') == $e->brand_name) selected @endif>{{ ucfirst($e->brand_name) }}</option>
@@ -125,7 +126,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Pickup Point<span class="text-danger">*</span></label>
-                                            <select name="pickuppoint_id" id="pickuppoint_id" required class="form-control @error('pickuppoint_id') is-invalid @enderror">
+                                            <select name="pickuppoint_id" id="pickuppoint_id"  class="form-control @error('pickuppoint_id') is-invalid @enderror">
                                                 <option value="">Choose a Pickup Point</option>
                                                 @foreach($pickup_point as $e)
                                                     <option value="{{ $e->id }}" @if(old('pickuppoint_id') == $e->pickup_point_name) selected @endif>{{ ucfirst($e->pickup_point_name) }}</option>
@@ -153,8 +154,9 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Tags</label>
-                                            <input type="text" name="tags" placeholder="Slider tags" value="{{ old('tags') }}"
-                                                   class="form-control @error('tags') is-invalid @enderror">
+                                            <select multiple="multiple" name="tags[]" placeholder="Enter tags" value="{{ old('tags') }}"
+                                                   class="form-control select2 @error('tags') is-invalid @enderror">
+                                            </select>
                                             @error('tags')
                                             <strong class="text-danger">{{ $errors->first('tags') }}</strong>
                                             @enderror
@@ -210,7 +212,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Warehouse<span class="text-danger">*</span></label>
-                                            <select name="warehouse_id" id="warehouse_id" required class="form-control @error('warehouse_id') is-invalid @enderror">
+                                            <select name="warehouse_id" id="warehouse_id"  class="form-control @error('warehouse_id') is-invalid @enderror">
                                                 <option value="">Choose a warehouse</option>
                                                 @foreach($warehouse as $e)
                                                     <option value="{{ $e->id }}" @if(old('warehouse_id') == $e->warehouse_name) selected @endif>{{ ucfirst($e->warehouse_name) }}</option>
@@ -227,8 +229,8 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Color</label>
-                                            <input type="text" name="color" placeholder="Enter color" value="{{ old('color') }}"
-                                                   class="form-control @error('color') is-invalid @enderror">
+                                            <select type="text" multiple="multiple" name="color[]" placeholder="Enter color" value="{{ old('color') }}"
+                                                   class="form-control select2 @error('color') is-invalid @enderror"></select>
                                             @error('color')
                                             <strong class="text-danger">{{ $errors->first('color') }}</strong>
                                             @enderror
@@ -264,7 +266,7 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="control-label">Featured Status<span class="text-danger">*</span></label>
-                                            <select name="featured" required class="form-control @error('featured') is-invalid @enderror">
+                                            <select name="featured"  class="form-control @error('featured') is-invalid @enderror">
                                                 <option value="">Choose a featured</option>
                                                 @foreach(\App\Models\Product::$featuredArrays as $statys)
                                                     <option value="{{ $statys }}"
@@ -279,7 +281,7 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="control-label">Today Deal<span class="text-danger">*</span></label>
-                                            <select name="today_deal" required class="form-control @error('today_deal') is-invalid @enderror">
+                                            <select name="today_deal"  class="form-control @error('today_deal') is-invalid @enderror">
                                                 <option value="">Choose a today_deal</option>
                                                 @foreach(\App\Models\Product::$todayDealArrays as $statys)
                                                     <option value="{{ $statys }}"
@@ -295,7 +297,7 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="control-label">Status<span class="text-danger">*</span></label>
-                                            <select name="status" required class="form-control @error('status') is-invalid @enderror">
+                                            <select name="status"  class="form-control @error('status') is-invalid @enderror">
                                                 <option value="">Choose a status</option>
                                                 @foreach(\App\Models\Product::$statusArrays as $statys)
                                                     <option value="{{ $statys }}"
@@ -322,7 +324,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Thumbnail <label class="text-danger">*</label></label>
-                                            <input type="file" name="image" required placeholder="Slider image" value="{{ old('image') }}"
+                                            <input type="file" name="image"  placeholder="Slider image" value="{{ old('image') }}"
                                                    class="form-control @error('image') is-invalid @enderror">
                                             @error('image')
                                             <strong class="text-danger">{{ $errors->first('image') }}</strong>
@@ -351,7 +353,18 @@
 
 @section('script')
 
+  <script src="{{ asset('assets/admin/plugins/select2/js/select2.min.js') }}"></script>
+
+
 <script>
+
+    $(".select2").select2({
+        tags: true,
+        tokenSeparators: [',', ' ']
+    })
+
+
+
     $("#subcategory_id").change(function(){
         var id = $(this).val();
         $.ajax({

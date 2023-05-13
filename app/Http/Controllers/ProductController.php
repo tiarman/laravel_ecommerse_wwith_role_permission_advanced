@@ -51,6 +51,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 //        dd($request->all());
+// return $request;
 $message = '<strong>Congratulations!!!</strong> Product successfully';
 $rules = [
 
@@ -63,9 +64,9 @@ $rules = [
     'name' => 'nullable|string',
     'code' => 'nullable|string',
     'unit' => 'nullable|string',
-    'tags' => 'nullable|string',
-    'color' => 'nullable|string',
-    'size' => 'nullable|string',
+    'tags[]' => 'nullable|string',
+    'color[]' => 'nullable|string',
+    'size' => 'nullable|string:',
     'video' => 'nullable|string',
     'purchase_price' => 'nullable|string',
     'selling_price' => 'nullable|string',
