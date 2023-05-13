@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_has_tags', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->string('tag_name')->nullable();
             $table->timestamps();
         });
     }

@@ -10,9 +10,11 @@ use App\Models\ChildCategory;
 use App\Models\PickupPoint;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Models\UserHasTags;
 use App\Models\WareHouse;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
@@ -51,7 +53,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 //        dd($request->all());
-// return $request;
 $message = '<strong>Congratulations!!!</strong> Product successfully';
 $rules = [
 
@@ -64,9 +65,9 @@ $rules = [
     'name' => 'nullable|string',
     'code' => 'nullable|string',
     'unit' => 'nullable|string',
-    'tags[]' => 'nullable|string',
-    'color[]' => 'nullable|string',
-    'size' => 'nullable|string:',
+    'tag_name' => 'nullable',
+    'color' => 'nullable|string',
+    'size' => 'nullable|string',
     'video' => 'nullable|string',
     'purchase_price' => 'nullable|string',
     'selling_price' => 'nullable|string',
@@ -95,8 +96,12 @@ if ($request->has('id')) {
   $request->validate($rules);
 
         try {
+            // $subcategory =DB::table('sub_categories')->where('id', $request->subcategory_id)->first();
+            // $sub = $subcategory->category_id;
+            // return $sub;
             $product->category_id = $request->category_id;
-            $product->subcategory_id = $request->subcategory_id;
+            // $subcategory->subcategory = $request->category_id;
+            // return $sub;
             $product->childcategory_id = $request->childcategory_id;
             $product->brand_id = $request->brand_id;
             $product->pickuppoint_id = $request->pickuppoint_id;
@@ -104,10 +109,29 @@ if ($request->has('id')) {
             $product->name = $request->name;
             $product->code = $request->code;
             $product->unit = $request->unit;
-            $product->tags = $request->tags;
+            // $product->tag = $request->tag;
+        //     $ids = $request->tag_name;
+        //     // return $ids;
+        //  foreach ($ids as $tag_id){
+        //    DB::table('user_has_tags')->insert([
+        //      'tag_name' => $request->tag_name,
+        //      'tag_id' => $tag_id,
+        //    ]);
+        //  }
             $product->color = $request->color;
             $product->size = $request->size;
             $product->video = $request->video;
+            // $ids = $request->tag_name;
+            // // return $request->tag_name;
+            // // return $ids;
+            // return $request;
+            //  foreach ($ids as $tag_name){
+            //    DB::table('user_has_tags')->insert([
+            //      'tag_id' => auth()->user()->id,
+            //      'tag_name' => $tag_name,
+
+            //    ]);
+            //  }
             $product->purchase_price = $request->purchase_price;
             $product->selling_price = $request->selling_price;
             $product->discount_price = $request->discount_price;
@@ -134,6 +158,22 @@ if ($request->has('id')) {
                 if ($oldImage !== null && isset($logo)) {
                     CustomHelper::deleteFile($oldImage);
                 }
+
+                $lastProductId = $product->id;
+                // return $lastProductId;
+
+                $ids = $request->tag_name;
+                // return $request->tag_name;
+                // return $ids;
+                // return $request;
+                 foreach ($ids as $tag_name){
+                   DB::table('user_has_tags')->insert([
+                     'product_id' => $lastProductId,
+                     'tag_name' => $tag_name,
+
+                   ]);
+                 }
+
                 return RedirectHelper::routeSuccessWithParams('product.list', $message);
             }
             return RedirectHelper::backWithInput();

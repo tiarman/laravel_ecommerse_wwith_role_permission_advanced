@@ -20,7 +20,7 @@ class Product extends Model
         'name',
         'code',
         'unit',
-        'tags',
+        'tag',
         'color',
         'size',
         'video',
@@ -74,6 +74,12 @@ class Product extends Model
     {
         return $this->hasOne(WareHouse::class, 'id', 'warehouse_id');
     }
+
+
+    public function tags()
+{
+    return $this->belongsToMany(UserHasTags::class);
+}
 
 
 

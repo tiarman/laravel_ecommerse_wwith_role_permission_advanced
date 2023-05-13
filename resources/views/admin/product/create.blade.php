@@ -154,11 +154,11 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Tags</label>
-                                            <select multiple="multiple" name="tags[]" placeholder="Enter tags" value="{{ old('tags') }}"
-                                                   class="form-control select2 @error('tags') is-invalid @enderror">
+                                            <select multiple="multiple" name="tag_name[]" placeholder="Enter tag_name" value="{{ old('tag_name[]') }}"
+                                                   class="form-control select2 @error('tag_name') is-invalid @enderror">
                                             </select>
-                                            @error('tags')
-                                            <strong class="text-danger">{{ $errors->first('tags') }}</strong>
+                                            @error('tag_name')
+                                            <strong class="text-danger">{{ $errors->first('tag_name') }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -354,14 +354,19 @@
 @section('script')
 
   <script src="{{ asset('assets/admin/plugins/select2/js/select2.min.js') }}"></script>
-
+  <script>
+    $(document).ready(function () {
+      $('.select2').select2({
+        tags: true,
+      })
+    })
+  </script>
 
 <script>
 
-    $(".select2").select2({
+    {{--  $(".select2").select2({
         tags: true,
-        tokenSeparators: [',', ' ']
-    })
+    })  --}}
 
 
 
