@@ -2,6 +2,8 @@
 
 @section('stylesheet')
   <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/css/select2.min.css') }}">
+
   <link href="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css"/>
   <link href="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet"
@@ -39,8 +41,9 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label class="control-label">Category Name <span class="text-danger">*</span></label>
-                          <input type="text" name="category_name" placeholder="category_name" value="{{ old('category_name') }}"
-                                 class="form-control @error('category_name') is-invalid @enderror" required>
+                          <select type="text" multiple="multiple" name="category_name[]" placeholder="category_name" value="{{ old('category_name') }}"
+                                 class="form-control select2 @error('category_name') is-invalid @enderror" required>
+                          </select>
                           @error('category_name')
                           <strong class="text-danger">{{ $errors->first('category_name') }}</strong>
                           @enderror
@@ -223,8 +226,16 @@
   <script src="{{ asset('assets/admin/plugins/datatables/dataTables.responsive.min.js') }}"></script>
   <script src="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 
-
+  <script src="{{ asset('assets/admin/plugins/select2/js/select2.min.js') }}"></script>
   <script>
+    $(document).ready(function () {
+      $('.select2').select2({
+        tags: true,
+      })
+    })
+  </script>
+  <script>
+
     $(document).ready(function () {
        $('#datatable-buttons').DataTable();
 

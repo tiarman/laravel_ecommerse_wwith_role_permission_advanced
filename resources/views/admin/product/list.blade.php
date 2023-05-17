@@ -40,7 +40,7 @@
                                 <tr>
                                     <th width="10">#</th>
                                     <th>Image</th>
-                                    <th>Title</th>
+                                    <th>Name</th>
                                     <th width="200">Created</th>
                                     <th width="50">Status</th>
                                     <th class="hidden-phone" width="40">Option</th>

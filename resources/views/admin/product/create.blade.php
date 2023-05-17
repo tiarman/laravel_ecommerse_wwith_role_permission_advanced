@@ -33,7 +33,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Product Name</label>
-                                            <input type="text" name="name" placeholder="Slider name" value="{{ old('name') }}"
+                                            <input type="text" name="name" placeholder="Product name" value="{{ old('name') }}"
                                                    class="form-control @error('name') is-invalid @enderror">
                                             @error('name')
                                             <strong class="text-danger">{{ $errors->first('name') }}</strong>
@@ -229,10 +229,10 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Color</label>
-                                            <select type="text" multiple="multiple" name="color[]" placeholder="Enter color" value="{{ old('color') }}"
-                                                   class="form-control select2 @error('color') is-invalid @enderror"></select>
-                                            @error('color')
-                                            <strong class="text-danger">{{ $errors->first('color') }}</strong>
+                                            <select multiple="multiple" name="color[]" placeholder="Enter color" value="{{ old('color[]') }}"
+                                                   class="form-control select2 @error('color[]') is-invalid @enderror"></select>
+                                            @error('color[]')
+                                            <strong class="text-danger">{{ $errors->first('color[]') }}</strong>
                                             @enderror
                                         </div>
                                     </div>

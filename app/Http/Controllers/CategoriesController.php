@@ -32,7 +32,7 @@ class CategoriesController extends Controller
         // return $request;
         $message = '<strong>Congratulations!!!</strong> Category successfully';
         $rules = [
-            'category_name' => 'required|string',
+            'category_name' => 'required',
             'category_slug' => 'nullable|string',
             'status' => ['required', Rule::in(\App\Models\Categories::$statusArrays)],
             // 'status' = ['required|string', Rule::in(\App\Models\Categories::$statusArrays)],
@@ -48,7 +48,12 @@ class CategoriesController extends Controller
           $request->validate($rules);
 
           try{
-            $category->category_name = $request->category_name;
+
+            $values = implode(',', $request->input('category_name'));
+            // return $values;
+
+    // Save the values to the database
+    Categories::create(['category_name' => $values]);
             $category->category_slug = $request->category_slug;
             $category->status = $request->status;
 

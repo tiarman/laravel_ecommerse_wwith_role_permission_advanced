@@ -28,9 +28,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return view('site.index');
+// })->name('home');
+
+Route::get('/', [SiteController::class, 'home'])->name('home');
 
 
 

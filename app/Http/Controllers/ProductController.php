@@ -36,7 +36,7 @@ class ProductController extends Controller
         $data['brand'] = Brand::get();
         $data['pickup_point'] = PickupPoint::get();
         $data['warehouse'] = WareHouse::get();
-        return view('admin.product.create',$data);
+        return view('admin.product.create', $data);
     }
 
     //manage
@@ -44,6 +44,12 @@ class ProductController extends Controller
     public function manage($id = null)
     {
         if ($data['product'] = Product::find($id)) {
+            $data['categories'] = Categories::get();
+            $data['subcategory'] = SubCategory::get();
+            $data['childcategory'] = ChildCategory::get();
+            $data['brand'] = Brand::get();
+            $data['pickup_point'] = PickupPoint::get();
+            $data['warehouse'] = WareHouse::get();
             return view('admin.product.manage', $data);
         }
         return RedirectHelper::routeWarningWithParams('product.list', '<strong>Sorry!!!</strong> Product not found');
@@ -52,55 +58,65 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request->all());
-$message = '<strong>Congratulations!!!</strong> Product successfully';
-$rules = [
+        //        dd($request->all());
+        $message = '<strong>Congratulations!!!</strong> Product successfully';
+        $rules = [
 
-    'category_id' => 'nullable|string',
-    'subcategory_id' => 'nullable|string',
-    'childcategory_id' => 'nullable|string',
-    'brand_id' => 'nullable|string',
-    'pickuppoint_id' => 'nullable|string',
-    'warehouse_id' => 'nullable|string',
-    'name' => 'nullable|string',
-    'code' => 'nullable|string',
-    'unit' => 'nullable|string',
-    'tag_name' => 'nullable',
-    'color' => 'nullable|string',
-    'size' => 'nullable|string',
-    'video' => 'nullable|string',
-    'purchase_price' => 'nullable|string',
-    'selling_price' => 'nullable|string',
-    'discount_price' => 'nullable|string',
-    'stock_quantity' => 'nullable|string',
-    'warehuse' => 'nullable|string',
-    'description' => 'nullable|string',
-    'thumbnail' => 'nullable|string',
-    'images' => 'nullable|string',
-    'featured' => 'nullable|string',
-    'today_deal' => 'nullable|string',
-    'flash_deal_id' => 'nullable|string',
-    'cash_on_delivery' => 'nullable|string',
-    'admin_id' => 'nullable|string',
-    'status' => ['required', Rule::in(\App\Models\Product::$statusArrays)],
-    // 'status' = ['required|string', Rule::in(\App\Models\Product::$statusArrays)],
-];
+            'category_id' => 'nullable|string',
+            'subcategory_id' => 'nullable|string',
+            'childcategory_id' => 'nullable|string',
+            'brand_id' => 'nullable|string',
+            'pickuppoint_id' => 'nullable|string',
+            'warehouse_id' => 'nullable|string',
+            'name' => 'nullable|string',
+            'code' => 'nullable|string',
+            'unit' => 'nullable|string',
+            'tag_name' => 'nullable',
+            'color' => 'nullable',
+            'size' => 'nullable|string',
+            'video' => 'nullable|string',
+            'purchase_price' => 'nullable|string',
+            'selling_price' => 'nullable|string',
+            'discount_price' => 'nullable|string',
+            'stock_quantity' => 'nullable|string',
+            'warehuse' => 'nullable|string',
+            'description' => 'nullable|string',
+            'thumbnail' => 'nullable|string',
+            'images' => 'nullable|string',
+            'featured' => 'nullable|string',
+            'today_deal' => 'nullable|string',
+            'flash_deal_id' => 'nullable|string',
+            'cash_on_delivery' => 'nullable|string',
+            'admin_id' => 'nullable|string',
+            'status' => ['required', Rule::in(\App\Models\Product::$statusArrays)],
+            // 'status' = ['required|string', Rule::in(\App\Models\Product::$statusArrays)],
+        ];
 
-if ($request->has('id')) {
-    $product = Product::find($request->id);
-    $message = $message . ' updated';
-  } else {
-    $product = new Product();
-    $message = $message . ' created';
-  }
-  $request->validate($rules);
+        if ($request->has('id')) {
+            $product = Product::find($request->id);
+            $message = $message . ' updated';
+        } else {
+            $product = new Product();
+            $message = $message . ' created';
+        }
+        $request->validate($rules);
 
         try {
-            $subcategory =DB::table('sub_categories')->where('id', $request->subcategory_id)->first();
-            // $sub = $subcategory->category_id;
-            // return $subcategory;
-           $product->category_id = $subcategory->category_id;
+            $subcategory = DB::table('sub_categories')->where('id', $request->subcategory_id)->first();
+            $product->category_id = $subcategory?->category_id;
 
+
+            // $values = implode(',', $request->input('tag_name'));
+            // // return $values;
+            // // Save the values to the database
+            // Product::create(['tag_name' => $values]);
+
+            // $values2 = implode(',', $request->input('color'));
+            // return $values;
+            // Save the values to the database
+
+            $product->tag_name = implode(',', $request->input('tag_name'));
+            $product->color = implode(',', $request->input('color'));
 
             $product->subcategory_id = $request->subcategory_id;
             // return $sub;
@@ -112,28 +128,18 @@ if ($request->has('id')) {
             $product->code = $request->code;
             $product->unit = $request->unit;
             // $product->tag = $request->tag;
-        //     $ids = $request->tag_name;
-        //     // return $ids;
-        //  foreach ($ids as $tag_id){
-        //    DB::table('user_has_tags')->insert([
-        //      'tag_name' => $request->tag_name,
-        //      'tag_id' => $tag_id,
-        //    ]);
-        //  }
-            $product->color = $request->color;
-            $product->size = $request->size;
-            $product->video = $request->video;
-            // $ids = $request->tag_name;
-            // // return $request->tag_name;
-            // // return $ids;
-            // return $request;
-            //  foreach ($ids as $tag_name){
+            //     $ids = $request->tag_name;
+            //     // return $ids;
+            //  foreach ($ids as $tag_id){
             //    DB::table('user_has_tags')->insert([
-            //      'tag_id' => auth()->user()->id,
-            //      'tag_name' => $tag_name,
-
+            //      'tag_name' => $request->tag_name,
+            //      'tag_id' => $tag_id,
             //    ]);
             //  }
+            // $product->color = $request->color;
+            $product->size = $request->size;
+            $product->video = $request->video;
+
             $product->purchase_price = $request->purchase_price;
             $product->selling_price = $request->selling_price;
             $product->discount_price = $request->discount_price;
@@ -149,7 +155,7 @@ if ($request->has('id')) {
             $product->admin_id = $request->admin_id;
 
             $oldImage = $product->image;
-//            return $product;
+            //            return $product;
             if ($request->hasFile('image')) {
                 $logo = CustomHelper::storeImage($request->file('image'), '/product/');
                 if ($logo != false) {
@@ -161,23 +167,6 @@ if ($request->has('id')) {
                     CustomHelper::deleteFile($oldImage);
                 }
 
-                $lastProductId = $product->id;
-                // return $lastProductId;
-                if(!$ids = $request->tag_name){
-                    return RedirectHelper::routeSuccessWithParams('product.list', $message);
-
-                }else
-                foreach ($ids as $tag_name){
-                    DB::table('user_has_tags')->insert([
-                      'product_id' => $lastProductId,
-                      'tag_name' => $tag_name,
-
-                    ]);
-                  }
-
-
-
-
                 return RedirectHelper::routeSuccessWithParams('product.list', $message);
             }
             return RedirectHelper::backWithInput();
@@ -185,11 +174,11 @@ if ($request->has('id')) {
             return $e;
             return RedirectHelper::backWithInputFromException();
         }
-
     }
 
 
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
         $id = $request->post('id');
         try {
             $user = Product::find($id);
@@ -209,7 +198,8 @@ if ($request->has('id')) {
      * @param Request $request
      * @return string|void
      */
-    public function ajaxUpdateStatus(Request $request) {
+    public function ajaxUpdateStatus(Request $request)
+    {
         if ($request->isMethod("POST")) {
             $id = $request->post('id');
             $postStatus = $request->post('status');
@@ -220,6 +210,4 @@ if ($request->has('id')) {
             }
         }
     }
-
-
 }
