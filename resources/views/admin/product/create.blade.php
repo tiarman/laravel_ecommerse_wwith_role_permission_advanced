@@ -250,6 +250,7 @@
 
 
 
+
                                     <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
@@ -331,6 +332,24 @@
                                             @enderror
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                          <label class="control-label">Status<span class="text-danger">*</span></label>
+                                          <select name="set_to_banner" required class="form-control @error('set_to_banner') is-invalid @enderror">
+                                            <option value="">Choose a statue</option>
+                                            @foreach(\App\Models\Product::$setToBannerArrays as $statys)
+                                              <option value="{{ $statys }}"
+                                                      @if(old('set_to_banner') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
+                                            @endforeach
+                                          </select>
+                                          @error('set_to_banner')
+                                          <strong class="text-danger">{{ $errors->first('set_to_banner') }}</strong>
+                                          @enderror
+                                        </div>
+                                      </div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-12 text-right">

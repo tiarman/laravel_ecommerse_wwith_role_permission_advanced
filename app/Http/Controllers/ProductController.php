@@ -10,7 +10,6 @@ use App\Models\ChildCategory;
 use App\Models\PickupPoint;
 use App\Models\Product;
 use App\Models\SubCategory;
-use App\Models\UserHasTags;
 use App\Models\WareHouse;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -36,6 +35,8 @@ class ProductController extends Controller
         $data['brand'] = Brand::get();
         $data['pickup_point'] = PickupPoint::get();
         $data['warehouse'] = WareHouse::get();
+
+
         return view('admin.product.create', $data);
     }
 
@@ -43,13 +44,27 @@ class ProductController extends Controller
 
     public function manage($id = null)
     {
+
         if ($data['product'] = Product::find($id)) {
-            $data['categories'] = Categories::get();
+
+            // for tag loading
+            $productId = Product::find($id, 'tag_name');
+            $ids = $productId->tag_name;
+            $data['selectedTags'] = explode(',', $ids );
+
+
+            // for Colors loading
+            $productId2 = Product::find($id, 'color');
+            $ids2 = $productId2->color;
+            $data['selectedColors'] = explode(',', $ids2 );
+
+
+            $data['categorys'] = Categories::get();
             $data['subcategory'] = SubCategory::get();
             $data['childcategory'] = ChildCategory::get();
             $data['brand'] = Brand::get();
-            $data['pickup_point'] = PickupPoint::get();
-            $data['warehouse'] = WareHouse::get();
+            $data['pickuppoint'] = PickupPoint::get();
+            $data['warehuses'] = WareHouse::get();
             return view('admin.product.manage', $data);
         }
         return RedirectHelper::routeWarningWithParams('product.list', '<strong>Sorry!!!</strong> Product not found');
@@ -83,7 +98,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'thumbnail' => 'nullable|string',
             'images' => 'nullable|string',
-            'featured' => 'nullable|string',
+            'featured' => ['required', Rule::in(\App\Models\Product::$featuredArrays)],
             'today_deal' => 'nullable|string',
             'flash_deal_id' => 'nullable|string',
             'cash_on_delivery' => 'nullable|string',
@@ -93,6 +108,7 @@ class ProductController extends Controller
         ];
 
         if ($request->has('id')) {
+            // return $request;
             $product = Product::find($request->id);
             $message = $message . ' updated';
         } else {
@@ -106,14 +122,7 @@ class ProductController extends Controller
             $product->category_id = $subcategory?->category_id;
 
 
-            // $values = implode(',', $request->input('tag_name'));
-            // // return $values;
-            // // Save the values to the database
-            // Product::create(['tag_name' => $values]);
 
-            // $values2 = implode(',', $request->input('color'));
-            // return $values;
-            // Save the values to the database
 
             $product->tag_name = implode(',', $request->input('tag_name'));
             $product->color = implode(',', $request->input('color'));
@@ -127,16 +136,7 @@ class ProductController extends Controller
             $product->name = $request->name;
             $product->code = $request->code;
             $product->unit = $request->unit;
-            // $product->tag = $request->tag;
-            //     $ids = $request->tag_name;
-            //     // return $ids;
-            //  foreach ($ids as $tag_id){
-            //    DB::table('user_has_tags')->insert([
-            //      'tag_name' => $request->tag_name,
-            //      'tag_id' => $tag_id,
-            //    ]);
-            //  }
-            // $product->color = $request->color;
+
             $product->size = $request->size;
             $product->video = $request->video;
 
@@ -206,6 +206,43 @@ class ProductController extends Controller
             $status = strtolower($postStatus);
             $user = Product::find($id);
             if ($user->update(['status' => $status])) {
+                return "success";
+            }
+        }
+    }
+
+
+
+    /**
+     * @param Request $request
+     * @return string|void
+     */
+    public function ajaxUpdateFeatured(Request $request)
+    {
+        if ($request->isMethod("POST")) {
+            $id = $request->post('id');
+            $postStatus = $request->post('featured');
+            $featured = strtolower($postStatus);
+            $user = Product::find($id);
+            if ($user->update(['featured' => $featured])) {
+                return "success";
+            }
+        }
+    }
+
+
+     /**
+     * @param Request $request
+     * @return string|void
+     */
+    public function ajaxUpdatedeal(Request $request)
+    {
+        if ($request->isMethod("POST")) {
+            $id = $request->post('id');
+            $postStatus = $request->post('today_deal');
+            $today_deal = strtolower($postStatus);
+            $user = Product::find($id);
+            if ($user->update(['today_deal' => $today_deal])) {
                 return "success";
             }
         }

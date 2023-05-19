@@ -20,7 +20,7 @@ class Product extends Model
         'name',
         'code',
         'unit',
-        'tag',
+        'tag_name',
         'color',
         'size',
         'video',
@@ -34,6 +34,7 @@ class Product extends Model
         'image',
         'featured',
         'today_deal',
+        'set_to_banner',
         'status',
         'flash_deal_id',
         'cash_on_delivery',
@@ -44,8 +45,9 @@ class Product extends Model
     public static $statusArrays = ['active', 'inactive'];
     public static $featuredArrays = ['yes', 'no'];
     public static $todayDealArrays = ['yes', 'no'];
+    public static $setToBannerArrays = ['yes', 'no'];
 
-    public function category()
+    public function categorys()
     {
         return $this->hasOne(Categories::class, 'id', 'category_id');
     }

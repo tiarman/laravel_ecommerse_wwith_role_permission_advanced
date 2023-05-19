@@ -4561,6 +4561,144 @@ Invoice
 
 
 
+/*!*switch*! Custom 2*/
+.onoffswitchtwo {
+    position: relative; width: 60px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitchtwo-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.onoffswitchtwo-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitchtwo-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitchtwo-inner:before, .onoffswitchtwo-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitchtwo-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: lightseagreen; color: #FFFFFF;
+}
+.onoffswitchtwo-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #ea553d ; color: white;
+    text-align: right;
+}
+.onoffswitchtwo-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 33px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitchtwo-checkbox:checked + .onoffswitchtwo-label .onoffswitchtwo-inner {
+    margin-left: 0;
+}
+.onoffswitchtwo-checkbox:checked + .onoffswitchtwo-label .onoffswitchtwo-switch {
+    right: 0px;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+
+
+
+
+.btn-group-toggle .btn{
+    background-color: #ffffff!important;
+    color: black;
+}
+.btn-group-toggle .active{
+    background-color: #0062cc!important;
+}
+
+
+/* Today Deal Button */
+/*!*switch*! Custom 2*/
+.onoffswitchdeal {
+    position: relative; width: 60px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitchdeal-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.onoffswitchdeal-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitchdeal-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitchdeal-inner:before, .onoffswitchdeal-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitchdeal-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: lightseagreen; color: #FFFFFF;
+}
+.onoffswitchdeal-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #ea553d ; color: white;
+    text-align: right;
+}
+.onoffswitchdeal-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 33px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitchdeal-checkbox:checked + .onoffswitchdeal-label .onoffswitchdeal-inner {
+    margin-left: 0;
+}
+.onoffswitchdeal-checkbox:checked + .onoffswitchdeal-label .onoffswitchdeal-switch {
+    right: 0px;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+
+
+
+
+.btn-group-toggle .btn{
+    background-color: #ffffff!important;
+    color: black;
+}
+.btn-group-toggle .active{
+    background-color: #0062cc!important;
+}
+
+
+
+
+
+
+
 
 
 /*sweet allert*/

@@ -42,6 +42,8 @@
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th width="200">Created</th>
+                                    <th width="50">Today Deal</th>
+                                    <th width="50">Featured</th>
                                     <th width="50">Status</th>
                                     <th class="hidden-phone" width="40">Option</th>
                                 </tr>
@@ -53,6 +55,44 @@
                                         <td class="p-1"><img src="{{ asset($val->image) }}" style="height: 50px;"></td>
                                         <td class="p-1">{{ $val->name }}</td>
                                         <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
+
+
+                                        <td class="text-capitalize p-1" width="100">
+                                            <div class="onoffswitchdeal">
+                                                <input type="checkbox" name="onoffswitchdeal" class="onoffswitchdeal-checkbox"
+                                                       @if($val->today_deal == \App\Models\Product::$todayDealArrays[0])
+                                                           checked
+                                                       @endif
+                                                       data-id="{{ $val->id }}"
+                                                       id="myonoffswitchdeal{{ ($key+1) }}">
+                                                <label class="onoffswitchdeal-label" for="myonoffswitchdeal{{ ($key+1) }}">
+                                                    <span class="onoffswitchdeal-inner"></span>
+                                                    <span class="onoffswitchdeal-switch"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+
+
+
+                                        <td class="text-capitalize p-1" width="60">
+                                            <div class="onoffswitchtwo">
+                                                <input type="checkbox" name="onoffswitchtwo" class="onoffswitchtwo-checkbox"
+                                                       @if($val->featured == \App\Models\Product::$featuredArrays[0])
+                                                           checked
+                                                       @endif
+                                                       data-id="{{ $val->id }}"
+                                                       id="myonoffswitchtwo{{ ($key+1) }}">
+                                                <label class="onoffswitchtwo-label" for="myonoffswitchtwo{{ ($key+1) }}">
+                                                    <span class="onoffswitchtwo-inner"></span>
+                                                    <span class="onoffswitchtwo-switch"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+
+
+
+
+
                                         <td class="text-capitalize p-1" width="100">
                                             <div class="onoffswitch">
                                                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
@@ -67,6 +107,7 @@
                                                 </label>
                                             </div>
                                         </td>
+
                                         <td class="center hidden-phone p-1" width="100">
                                             <a href="{{ route('product.manage', $val->id) }}" class="btn btn-sm btn-success"> <i class="fa fa-edit"></i> </a>
                                             <span class="btn btn-sm btn-danger btn-delete delete_{{ $val->id }}" style="cursor: pointer" data-id="{{ $val->id }}"><i class="fa fa-trash"></i></span>
@@ -124,19 +165,21 @@
     <!-- Responsive examples -->
     <script src="{{ asset('assets/admin/plugins/datatables/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
 
 
     <script>
         $(document).ready(function () {
             // $('#datatable-buttons').DataTable();
 
-            // var table = $('#datatable-buttons').DataTable({
-            //   lengthChange: false,
-            //   buttons: ['copy', 'excel', 'pdf', 'colvis']
-            // });
-            //
-            // table.buttons().container()
-            //   .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+             var table = $('#datatable-buttons').DataTable({
+               lengthChange: false,
+               buttons: ['copy', 'excel', 'pdf', 'colvis']
+             });
+
+             table.buttons().container()
+               .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 
 
             $(document).on('change', 'input[name="onoffswitch"]', function () {
@@ -153,10 +196,85 @@
                     data: {'id': id, 'status': status},
                     success: function (data) {
                         if (data === "success") {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
                         }
                     }
                 });
-            })
+            });
+
+
+
+
+
+            $(document).on('change', 'input[name="onoffswitchtwo"]', function () {
+                var featured = 'no';
+                var id = $(this).data('id')
+                var isChecked = $(this).is(":checked");
+                if (isChecked) {
+                    featured = 'yes';
+                }
+                $.ajax({
+                    url: "{{ route('ajax.update.product.featured') }}",
+                    method: "post",
+                    dataType: "html",
+                    data: {'id': id, 'featured': featured},
+                    success: function (data) {
+                        if (data === "success") {
+                               Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                        }
+                    }
+                });
+            });
+
+
+
+            $(document).on('change', 'input[name="onoffswitchdeal"]', function () {
+                var today_deal = 'no';
+                console.log(today_deal);
+                var id = $(this).data('id')
+                console.log("log2", id);
+                var isChecked = $(this).is(":checked");
+                console.log("log3", id);
+                if (isChecked) {
+                    today_deal = 'yes';
+                }
+                $.ajax({
+                    url: "{{ route('ajax.update.product.today_deal') }}",
+                    method: "post",
+                    dataType: "html",
+                    data: {'id': id, 'today_deal': today_deal},
+                    success: function (data) {
+                        if (data === "success") {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                {{--  text: 'Updated successfully.',  --}}
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+
+                        }
+                    }
+                });
+            });
+
+
 
 
             $(document).on('click', '.yes-btn', function () {

@@ -1,481 +1,756 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>OneTech</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="OneTech shop project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/site/styles/bootstrap4/bootstrap.min.css')}}">
-<link href="{{asset('assets/site/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/site/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/site/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/site/plugins/OwlCarousel2-2.2.1/animate.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/site/plugins/slick-1.8.0/slick.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/site/styles/main_styles.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/site/styles/responsive.css')}}">
+<!doctype html>
+<html class="no-js" lang="en">
 
-@yield('stylesheet')
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ecommerse || Online</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/site/assets/images/favicon.png')}}">
+
+    <!-- CSS============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/flaticon/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/sal.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/vendor/base.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/site/css/style.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/site/css/custom.css') }}">
+
+    @yield('stylesheet')
 
 </head>
 
+
 <body>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+    <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
+    <!-- Start Header -->
+    <header class="header axil-header header-style-2 header-style-6">
+        <!-- Start Header Top Area  -->
+        <div class="axil-header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-sm-3 col-5">
+                        <div class="header-brand">
+                            <a href="index.html" class="logo logo-dark">
+                                <img src="{{asset('assets/site/images/logo/logo.png')}}" alt="Site Logo">
+                            </a>
+                            <a href="index.html" class="logo logo-light">
+                                <img src="{{asset('assets/site/images/logo/logo-light.png')}}" alt="Site Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-sm-9 col-7">
+                        <div class="header-top-dropdown dropdown-box-style">
+                            <div class="axil-search">
+                                <button type="submit" class="icon wooc-btn-search">
+                                    <i class="far fa-search"></i>
+                                </button>
+                                <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="What are you looking for...." autocomplete="off">
+                            </div>
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    USD
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">USD</a></li>
+                                    <li><a class="dropdown-item" href="#">AUD</a></li>
+                                    <li><a class="dropdown-item" href="#">EUR</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    EN
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">EN</a></li>
+                                    <li><a class="dropdown-item" href="#">ARB</a></li>
+                                    <li><a class="dropdown-item" href="#">SPN</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Top Area  -->
 
-<div class="super_container">
-
-	<!-- Header -->
-
-	<header class="header">
-
-		<!-- Top Bar -->
-
-		<div class="top_bar">
-			<div class="container">
-				<div class="row">
-					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('assets/site/images/phone.png')}}" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('assets/site/images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
-						<div class="top_bar_content ml-auto">
-							<div class="top_bar_menu">
-								<ul class="standard_dropdown top_bar_dropdown">
-									<li>
-										<a href="#">English<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">Italian</a></li>
-											<li><a href="#">Spanish</a></li>
-											<li><a href="#">Japanese</a></li>
-										</ul>
-									</li>
-									<li>
-										<a href="#">$Currency<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">Doller</a></li>
-											<li><a href="#">Taka</a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-							<div class="top_bar_user">
-								<div class="user_icon"><img src="{{asset('assets/site/images/user.svg')}}" alt=""></div>
-								<div><a href="#">Register</a></div>
-								<div><a href="{{route('login')}}">Sign in</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Header Main -->
-
-		<div class="header_main">
-			<div class="container">
-				<div class="row">
-
-					<!-- Logo -->
-					<div class="col-lg-2 col-sm-3 col-3 order-1">
-						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
-						</div>
-					</div>
-
-					<!-- Search -->
-					<div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-						<div class="header_search">
-							<div class="header_search_content">
-								<div class="header_search_form_container">
-									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
-										<div class="custom_dropdown">
-											<div class="custom_dropdown_list">
-												<span class="custom_dropdown_placeholder clc">All Categories</span>
-												<i class="fas fa-chevron-down"></i>
-												<ul class="custom_list clc">
-
-													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">Computers</a></li>
-													<li><a class="clc" href="#">Laptops</a></li>
-													<li><a class="clc" href="#">Cameras</a></li>
-													<li><a class="clc" href="#">Hardware</a></li>
-													<li><a class="clc" href="#">Smartphones</a></li>
-												</ul>
-											</div>
-										</div>
-										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{asset('assets/site/images/search.png')}}" alt=""></button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Wishlist -->
-					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-								<div class="wishlist_icon"><img src="{{asset('assets/site/images/heart.png')}}" alt=""></div>
-								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="#">Wishlist</a></div>
-									<div class="wishlist_count">115</div>
-								</div>
-							</div>
-
-							<!-- Cart -->
-							<div class="cart">
-								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
-									<div class="cart_icon">
-										<img src="{{asset('assets/site/images/cart.png')}}" alt="">
-										<div class="cart_count"><span>10</span></div>
-									</div>
-									<div class="cart_content">
-										<div class="cart_text"><a href="#">Cart</a></div>
-										<div class="cart_price">$85</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Main Navigation -->
-
-		<nav class="main_nav">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-
-						<div class="main_nav_content d-flex flex-row">
-
-							<!-- Categories Menu -->
-
-							<div class="cat_menu_container">
-								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-									<div class="cat_burger"><span></span><span></span><span></span></div>
-									<div class="cat_menu_text">categories</div>
-								</div>
-
-
-
-								<ul class="cat_menu">
+        <!-- Start Mainmenu Area  -->
+        <div class="axil-mainmenu aside-category-menu">
+            <div class="container">
+                <div class="header-navbar">
+                    <div class="header-nav-department">
+                        <aside class="header-department">
+                            <button class="header-department-text department-title">
+                                <span class="icon"><i class="fal fa-bars"></i></span>
+                                <span class="text">Categories</span>
+                            </button>
+                            <nav class="department-nav-menu">
+                                <button class="sidebar-close"><i class="fas fa-times"></i></button>
+                                <ul class="nav-menu-list">
 
                                     @foreach ($category as $row )
                                     @php
                                     $subcategory=DB::table('sub_categories')->where('category_id', $row->id)->get();
-                                @endphp
-									<li class="hassubs">
-										<a href="#">{{$row->category_name}}<i class="fas fa-chevron-right"></i></a>
-										<ul>
-                                            @foreach ($subcategory as $row )
-                                            @php
-                                            $childcategory=DB::table('child_categories')->where('subcategory_id', $row->id)->get();
+                                    @endphp
+                                    <li>
+                                        <a href="#" class="nav-link has-megamenu">
+                                            <span class="menu-icon"><img src="{{asset('assets/site/images/product/categories/cat-02.png')}}" alt="Department"></span>
+                                            <span class="menu-text">{{$row->category_name}}</span>
+                                        </a>
+                                        <div class="department-megamenu">
+                                            <div class="department-megamenu-wrap">
+                                                <div class="department-submenu-wrap">
+                                                    <div class="department-submenu">
+                                                        @foreach ($subcategory as $row )
+                                                        @php
+                                                        $childcategory=DB::table('child_categories')->where('subcategory_id', $row->id)->get();
 
-                                            @endphp
+                                                        @endphp
+                                                        <h3 class="submenu-heading">{{$row->subcategory_name}}</h3>
+                                                        <ul>
+                                                            @foreach ($childcategory as $row)
+                                                            <li><a href="shop.html">{{$row->childcategory_name}}</a></li>
+                                                            @endforeach
 
+                                                        </ul>
 
-											<li class="hassubs">
-												<a href="#">{{$row->subcategory_name}}<i class="fas fa-chevron-right"></i></a>
-												<ul>
-                                                    @foreach ($childcategory as $row)
-                                                    <li><a href="#">{{$row->childcategory_name}}<i class="fas fa-chevron-right"></i></a></li>
+                                                        @endforeach
+                                                        {{--  <h3 class="submenu-heading">Baby</h3>
+                                                        <ul>
+                                                            <li><a href="shop.html">Baby Cloths</a></li>
+                                                            <li><a href="shop-sidebar.html">Baby Gear</a></li>
+                                                            <li><a href="shop.html">Baby Toddler</a></li>
+                                                            <li><a href="shop-sidebar.html">Baby Toys</a></li>
+                                                        </ul>  --}}
+                                                    </div>
 
-                                                    @endforeach
+                                                </div>
+                                                <div class="featured-product">
+                                                    <h3 class="featured-heading">Featured</h3>
+                                                    <div class="product-list">
+                                                        <div class="item-product">
+                                                            <a href="#"><img src="{{asset('assets/site/images/product/product-feature1.png')}}" alt="Featured Product"></a>
+                                                        </div>
+                                                        <div class="item-product">
+                                                            <a href="#"><img src="{{asset('assets/site/images/product/product-feature2.png')}}" alt="Featured Product"></a>
+                                                        </div>
+                                                        <div class="item-product">
+                                                            <a href="#"><img src="{{asset('assets/site/images/product/product-feature3.png')}}" alt="Featured Product"></a>
+                                                        </div>
+                                                        <div class="item-product">
+                                                            <a href="#"><img src="{{asset('assets/site/images/product/product-feature4.png')}}" alt="Featured Product"></a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="#" class="axil-btn btn-bg-primary">See All Offers</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
 
-												</ul>
-											</li>
-                                            @endforeach
-
-										</ul>
-									</li>
                                     @endforeach
-								</ul>
-
-							</div>
-
-							<!-- Main Nav Menu -->
-
-							<div class="main_nav_menu ml-auto">
-								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li class="hassubs">
-										<a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li class="hassubs">
-										<a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li class="hassubs">
-										<a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-								</ul>
-							</div>
-
-							<!-- Menu Trigger -->
-
-							<div class="menu_trigger_container ml-auto">
-								<div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
-									<div class="menu_burger">
-										<div class="menu_trigger_text">menu</div>
-										<div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-
-		<!-- Menu -->
-
-		<div class="page_menu">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-
-						<div class="page_menu_content">
-
-							<div class="page_menu_search">
-								<form action="#">
-									<input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
-								</form>
-							</div>
-							<ul class="page_menu_nav">
-								<li class="page_menu_item has-children">
-									<a href="#">Language<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Currency<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item">
-									<a href="#">Home<i class="fa fa-angle-down"></i></a>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
-										<li class="page_menu_item has-children">
-											<a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
-											<ul class="page_menu_selection">
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-											</ul>
-										</li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
-								<li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
-							</ul>
-
-							<div class="menu_contact">
-								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{asset('assets/site/images/phone_white.png')}}" alt=""></div>+38 068 005 3570</div>
-								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{asset('assets/site/images/mail_white.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</header>
 
 
 
 
-    @yield('content')
+
+                                </ul>
+                            </nav>
+                        </aside>
+                    </div>
+                    <div class="header-main-nav">
+                        <!-- Start Mainmanu Nav -->
+                        <nav class="mainmenu-nav">
+                            <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
+                            <div class="mobile-nav-brand">
+                                <a href="index.html" class="logo">
+                                    <img src="{{asset('assets/site/images/logo/logo.png')}}" alt="Site Logo">
+                                </a>
+                            </div>
+                            <ul class="mainmenu">
+                                <li><a href="{{route('home')}}">Home</a></li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Shop</a>
+                                    <ul class="axil-submenu">
+                                        <li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
+                                        <li><a href="shop.html">Shop no Sidebar</a></li>
+                                        <li><a href="single-product.html">Product Variation 1</a></li>
+                                        <li><a href="single-product-2.html">Product Variation 2</a></li>
+                                        <li><a href="single-product-3.html">Product Variation 3</a></li>
+                                        <li><a href="single-product-4.html">Product Variation 4</a></li>
+                                        <li><a href="single-product-5.html">Product Variation 5</a></li>
+                                        <li><a href="single-product-6.html">Product Variation 6</a></li>
+                                        <li><a href="single-product-7.html">Product Variation 7</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Pages</a>
+                                    <ul class="axil-submenu">
+                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="my-account.html">Account</a></li>
+                                        <li><a href="sign-up.html">Sign Up</a></li>
+                                        <li><a href="sign-in.html">Sign In</a></li>
+                                        <li><a href="forgot-password.html">Forgot Password</a></li>
+                                        <li><a href="reset-password.html">Reset Password</a></li>
+                                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                        <li><a href="coming-soon.html">Coming Soon</a></li>
+                                        <li><a href="404.html">404 Error</a></li>
+                                        <li><a href="typography.html">Typography</a></li>
+                                    </ul>
+                                </li>
+
+
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{{route('login')}}">Login</a></li>
+                            </ul>
+                        </nav>
+                        <!-- End Mainmanu Nav -->
+                    </div>
+                    <div class="header-action">
+                        <ul class="action-list">
+                            <li class="axil-search d-sm-none d-block">
+                                <a href="javascript:void(0)" class="header-search-icon" title="Search">
+                                    <i class="flaticon-magnifying-glass"></i>
+                                </a>
+                            </li>
+                            <li class="wishlist">
+                                <a href="wishlist.html">
+                                    <i class="flaticon-heart"></i>
+                                </a>
+                            </li>
+                            <li class="shopping-cart">
+                                <a href="#" class="cart-dropdown-btn">
+                                    <span class="cart-count">3</span>
+                                    <i class="flaticon-shopping-cart"></i>
+                                </a>
+                            </li>
+                            <li class="my-account">
+                                <a href="javascript:void(0)">
+                                    <i class="flaticon-person"></i>
+                                </a>
+                                <div class="my-account-dropdown">
+                                    <span class="title">QUICKLINKS</span>
+                                    <ul>
+                                        <li>
+                                            <a href="my-account.html">My Account</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Initiate return</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Support</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Language</a>
+                                        </li>
+                                    </ul>
+                                    <a href="{{route('login')}}" class="axil-btn btn-bg-primary">Login</a>
+                                    <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+                                </div>
+                            </li>
+                            <li class="axil-mobile-toggle">
+                                <button class="menu-btn mobile-nav-toggler">
+                                    <i class="flaticon-menu-2"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Mainmenu Area  -->
+    </header>
 
 
 
+@yield('content')
 
-	<!-- Footer -->
+    <!-- Start Footer Area  -->
+    <footer class="axil-footer-area footer-style-2">
+        <!-- Start Footer Top Area  -->
+        <div class="footer-top separator-top">
+            <div class="container">
+                <div class="row">
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Support</h5>
+                            <!-- <div class="logo mb--30">
+                            <a href="index.html">
+                                <img class="light-logo" src="{{asset('assets/site/images/logo/logo.png')}}" alt="Logo Images">
+                            </a>
+                        </div> -->
+                            <div class="inner">
+                                <p>685 Market Street, <br>
+                                Las Vegas, LA 95820, <br>
+                                United States.
+                                </p>
+                                <ul class="support-list-item">
+                                    <li><a href="mailto:example@domain.com"><i class="fal fa-envelope-open"></i> example@domain.com</a></li>
+                                    <li><a href="tel:(+01)850-315-5862"><i class="fal fa-phone-alt"></i> (+01) 850-315-5862</a></li>
+                                    <!-- <li><i class="fal fa-map-marker-alt"></i> 685 Market Street,  <br> Las Vegas, LA 95820, <br> United States.</li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Account</h5>
+                            <div class="inner">
+                                <ul>
+                                    <li><a href="my-account.html">My Account</a></li>
+                                    <li><a href="sign-up.html">Login / Register</a></li>
+                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Quick Link</h5>
+                            <div class="inner">
+                                <ul>
+                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="terms-of-service.html">Terms Of Use</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Download App</h5>
+                            <div class="inner">
+                                <span>Save $3 With App & New User only</span>
+                                <div class="download-btn-group">
+                                    <div class="qr-code">
+                                        <img src="{{asset('assets/site/images/others/qr.png')}}" alt="Axilthemes">
+                                    </div>
+                                    <div class="app-link">
+                                        <a href="#">
+                                            <img src="{{asset('assets/site/images/others/app-store.png')}}" alt="App Store">
+                                        </a>
+                                        <a href="#">
+                                            <img src="{{asset('assets/site/images/others/play-store.png')}}" alt="Play Store">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Top Area  -->
+        <!-- Start Copyright Area  -->
+        <div class="copyright-area copyright-default separator-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-4">
+                        <div class="social-share">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="copyright-left d-flex flex-wrap justify-content-center">
+                            <ul class="quick-link">
+                                <li>© 2023. All rights reserved by <a target="_blank" href="https://axilthemes.com/">Axilthemes</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
+                            <span class="card-text">Accept For</span>
+                            <ul class="payment-icons-bottom quick-link">
+                                <li><img src="{{asset('assets/site/images/icons/cart/cart-1.png')}}" alt="paypal cart"></li>
+                                <li><img src="{{asset('assets/site/images/icons/cart/cart-2.png')}}" alt="paypal cart"></li>
+                                <li><img src="{{asset('assets/site/images/icons/cart/cart-5.png')}}" alt="paypal cart"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Copyright Area  -->
+    </footer>
+    <!-- End Footer Area  -->
 
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
+    <!-- Product Quick View Modal Start -->
+    <div class="modal fade quick-view-product" id="quick-view-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="single-product-thumb">
+                        <div class="row">
+                            <div class="col-lg-7 mb--40">
+                                <div class="row">
+                                    <div class="col-lg-10 order-lg-2">
+                                        <div class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
+                                            <div class="thumbnail">
+                                                <img src="{{asset('assets/site/images/product/product-big-01.png')}}" alt="Product Images">
+                                                <div class="label-block label-right">
+                                                    <div class="product-badget">20% OFF</div>
+                                                </div>
+                                                <div class="product-quick-view position-view">
+                                                    <a href="assets/images/product/product-big-01.png')}}" class="popup-zoom">
+                                                        <i class="far fa-search-plus"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="thumbnail">
+                                                <img src="{{asset('assets/site/images/product/product-big-02.png')}}" alt="Product Images">
+                                                <div class="label-block label-right">
+                                                    <div class="product-badget">20% OFF</div>
+                                                </div>
+                                                <div class="product-quick-view position-view">
+                                                    <a href="assets/images/product/product-big-02.png')}}" class="popup-zoom">
+                                                        <i class="far fa-search-plus"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="thumbnail">
+                                                <img src="{{asset('assets/site/images/product/product-big-03.png')}}" alt="Product Images">
+                                                <div class="label-block label-right">
+                                                    <div class="product-badget">20% OFF</div>
+                                                </div>
+                                                <div class="product-quick-view position-view">
+                                                    <a href="assets/images/product/product-big-03.png')}}" class="popup-zoom">
+                                                        <i class="far fa-search-plus"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 order-lg-1">
+                                        <div class="product-small-thumb small-thumb-wrapper">
+                                            <div class="small-thumb-img">
+                                                <img src="{{asset('assets/site/images/product/product-thumb/thumb-08.png')}}" alt="thumb image">
+                                            </div>
+                                            <div class="small-thumb-img">
+                                                <img src="{{asset('assets/site/images/product/product-thumb/thumb-07.png')}}" alt="thumb image">
+                                            </div>
+                                            <div class="small-thumb-img">
+                                                <img src="{{asset('assets/site/images/product/product-thumb/thumb-09.png')}}" alt="thumb image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mb--40">
+                                <div class="single-product-content">
+                                    <div class="inner">
+                                        <div class="product-rating">
+                                            <div class="star-rating">
+                                                <img src="{{asset('assets/site/images/icons/rate.png')}}" alt="Rate Images">
+                                            </div>
+                                            <div class="review-link">
+                                                <a href="#">(<span>1</span> customer reviews)</a>
+                                            </div>
+                                        </div>
+                                        <h3 class="product-title">Serif Coffee Table</h3>
+                                        <span class="price-amount">$155.00 - $255.00</span>
+                                        <ul class="product-meta">
+                                            <li><i class="fal fa-check"></i>In stock</li>
+                                            <li><i class="fal fa-check"></i>Free delivery available</li>
+                                            <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
+                                        </ul>
+                                        <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.</p>
 
-				<div class="col-lg-3 footer_col">
-					<div class="footer_column footer_contact">
-						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
-						</div>
-						<div class="footer_title">Got Question? Call Us 24/7</div>
-						<div class="footer_phone">+38 068 005 3570</div>
-						<div class="footer_contact_text">
-							<p>17 Princess Road, London</p>
-							<p>Grester London NW18JR, UK</p>
-						</div>
-						<div class="footer_social">
-							<ul>
-								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fab fa-youtube"></i></a></li>
-								<li><a href="#"><i class="fab fa-google"></i></a></li>
-								<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
+                                        <div class="product-variations-wrapper">
 
-				<div class="col-lg-2 offset-lg-2">
-					<div class="footer_column">
-						<div class="footer_title">Find it Fast</div>
-						<ul class="footer_list">
-							<li><a href="#">Computers & Laptops</a></li>
-							<li><a href="#">Cameras & Photos</a></li>
-							<li><a href="#">Hardware</a></li>
-							<li><a href="#">Smartphones & Tablets</a></li>
-							<li><a href="#">TV & Audio</a></li>
-						</ul>
-						<div class="footer_subtitle">Gadgets</div>
-						<ul class="footer_list">
-							<li><a href="#">Car Electronics</a></li>
-						</ul>
-					</div>
-				</div>
+                                            <!-- Start Product Variation  -->
+                                            <div class="product-variation">
+                                                <h6 class="title">Colors:</h6>
+                                                <div class="color-variant-wrapper">
+                                                    <ul class="color-variant mt--0">
+                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
+                                                        </li>
+                                                        <li class="color-extra-02"><span><span class="color"></span></span>
+                                                        </li>
+                                                        <li class="color-extra-03"><span><span class="color"></span></span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!-- End Product Variation  -->
 
-				<div class="col-lg-2">
-					<div class="footer_column">
-						<ul class="footer_list footer_list_2">
-							<li><a href="#">Video Games & Consoles</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Cameras & Photos</a></li>
-							<li><a href="#">Hardware</a></li>
-							<li><a href="#">Computers & Laptops</a></li>
-						</ul>
-					</div>
-				</div>
+                                            <!-- Start Product Variation  -->
+                                            <div class="product-variation">
+                                                <h6 class="title">Size:</h6>
+                                                <ul class="range-variant">
+                                                    <li>xs</li>
+                                                    <li>s</li>
+                                                    <li>m</li>
+                                                    <li>l</li>
+                                                    <li>xl</li>
+                                                </ul>
+                                            </div>
+                                            <!-- End Product Variation  -->
 
-				<div class="col-lg-2">
-					<div class="footer_column">
-						<div class="footer_title">Customer Care</div>
-						<ul class="footer_list">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Order Tracking</a></li>
-							<li><a href="#">Wish List</a></li>
-							<li><a href="#">Customer Services</a></li>
-							<li><a href="#">Returns / Exchange</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="#">Product Support</a></li>
-						</ul>
-					</div>
-				</div>
+                                        </div>
 
-			</div>
-		</div>
-	</footer>
+                                        <!-- Start Product Action Wrapper  -->
+                                        <div class="product-action-wrapper d-flex-center">
+                                            <!-- Start Quentity Action  -->
+                                            <div class="pro-qty"><input type="text" value="1"></div>
+                                            <!-- End Quentity Action  -->
 
-	<!-- Copyright -->
+                                            <!-- Start Product Action  -->
+                                            <ul class="product-action d-flex-center mb--0">
+                                                <li class="add-to-cart"><a href="cart.html" class="axil-btn btn-bg-primary">Add to Cart</a></li>
+                                                <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
+                                            </ul>
+                                            <!-- End Product Action  -->
 
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col">
+                                        </div>
+                                        <!-- End Product Action Wrapper  -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product Quick View Modal End -->
 
-					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
-						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</div>
-						<div class="logos ml-sm-auto">
-							<ul class="logos_list">
-								<li><a href="#"><img src="{{asset('assets/site/images/logos_1.png')}}" alt=""></a></li>
-								<li><a href="#"><img src="{{asset('assets/site/images/logos_2.png')}}" alt=""></a></li>
-								<li><a href="#"><img src="{{asset('assets/site/images/logos_3.png')}}" alt=""></a></li>
-								<li><a href="#"><img src="{{asset('assets/site/images/logos_4.png')}}" alt=""></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    <!-- Header Search Modal End -->
+    <div class="header-search-modal" id="header-search-modal">
+        <button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
+        <div class="header-search-wrap">
+            <div class="card-header">
+                <form action="#">
+                    <div class="input-group">
+                        <input type="search" class="form-control" name="prod-search" id="prod-search" placeholder="Write Something....">
+                        <button type="submit" class="axil-btn btn-bg-primary"><i class="far fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="search-result-header">
+                    <h6 class="title">24 Result Found</h6>
+                    <a href="shop.html" class="view-all">View All</a>
+                </div>
+                <div class="psearch-results">
+                    <div class="axil-product-list">
+                        <div class="thumbnail">
+                            <a href="single-product.html">
+                                <img src="{{asset('assets/site/images/product/electric/product-09.png')}}" alt="Yantiti Leather Bags">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <span class="rating-icon">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fal fa-star"></i>
+                            </span>
+                                <span class="rating-number"><span>100+</span> Reviews</span>
+                            </div>
+                            <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
+                            <div class="product-price-variant">
+                                <span class="price current-price">$29.99</span>
+                                <span class="price old-price">$49.99</span>
+                            </div>
+                            <div class="product-cart">
+                                <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
+                                <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="axil-product-list">
+                        <div class="thumbnail">
+                            <a href="single-product.html">
+                                <img src="{{asset('assets/site/images/product/electric/product-09.png')}}" alt="Yantiti Leather Bags">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <span class="rating-icon">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fal fa-star"></i>
+                            </span>
+                                <span class="rating-number"><span>100+</span> Reviews</span>
+                            </div>
+                            <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
+                            <div class="product-price-variant">
+                                <span class="price current-price">$29.99</span>
+                                <span class="price old-price">$49.99</span>
+                            </div>
+                            <div class="product-cart">
+                                <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
+                                <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Search Modal End -->
 
-<script src="{{asset('assets/site/js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{asset('assets/site/styles/bootstrap4/popper.js')}}"></script>
-<script src="{{asset('assets/site/styles/bootstrap4/bootstrap.min.js')}}"></script>
-<script src="{{asset('assets/site/plugins/greensock/TweenMax.min.js')}}"></script>
-<script src="{{asset('assets/site/plugins/greensock/TimelineMax.min.js')}}"></script>
-<script src="{{asset('assets/site/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
-<script src="{{asset('assets/site/plugins/greensock/animation.gsap.min.js')}}"></script>
-<script src="{{asset('assets/site/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
-<script src="{{asset('assets/site/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
-<script src="{{asset('assets/site/plugins/slick-1.8.0/slick.js')}}"></script>
-<script src="{{asset('assets/site/plugins/easing/easing.js')}}"></script>
-<script src="{{asset('assets/site/js/custom.js')}}"></script>
-@yield('script')
+
+
+    <div class="cart-dropdown" id="cart-dropdown">
+        <div class="cart-content-wrap">
+            <div class="cart-header">
+                <h2 class="header-title">Cart review</h2>
+                <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-body">
+                <ul class="cart-item-list">
+                    <li class="cart-item">
+                        <div class="item-img">
+                            <a href="single-product.html"><img src="{{asset('assets/site/images/product/electric/product-01.png')}}" alt="Commodo Blown Lamp"></a>
+                            <button class="close-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="item-content">
+                            <div class="product-rating">
+                                <span class="icon">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+							</span>
+                                <span class="rating-number">(64)</span>
+                            </div>
+                            <h3 class="item-title"><a href="single-product-3.html">Wireless PS Handler</a></h3>
+                            <div class="item-price"><span class="currency-symbol">$</span>155.00</div>
+                            <div class="pro-qty item-quantity">
+                                <input type="number" class="quantity-input" value="15">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="cart-item">
+                        <div class="item-img">
+                            <a href="single-product-2.html"><img src="{{asset('assets/site/images/product/electric/product-02.png')}}" alt="Commodo Blown Lamp"></a>
+                            <button class="close-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="item-content">
+                            <div class="product-rating">
+                                <span class="icon">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+							</span>
+                                <span class="rating-number">(4)</span>
+                            </div>
+                            <h3 class="item-title"><a href="single-product-2.html">Gradient Light Keyboard</a></h3>
+                            <div class="item-price"><span class="currency-symbol">$</span>255.00</div>
+                            <div class="pro-qty item-quantity">
+                                <input type="number" class="quantity-input" value="5">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="cart-item">
+                        <div class="item-img">
+                            <a href="single-product-3.html"><img src="{{asset('assets/site/images/product/electric/product-03.png')}}" alt="Commodo Blown Lamp"></a>
+                            <button class="close-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="item-content">
+                            <div class="product-rating">
+                                <span class="icon">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+							</span>
+                                <span class="rating-number">(6)</span>
+                            </div>
+                            <h3 class="item-title"><a href="single-product.html">HD CC Camera</a></h3>
+                            <div class="item-price"><span class="currency-symbol">$</span>200.00</div>
+                            <div class="pro-qty item-quantity">
+                                <input type="number" class="quantity-input" value="100">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="cart-footer">
+                <h3 class="cart-subtotal">
+                    <span class="subtotal-title">Subtotal:</span>
+                    <span class="subtotal-amount">$610.00</span>
+                </h3>
+                <div class="group-btn">
+                    <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
+                    <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JS
+============================================ -->
+    <!-- Modernizer JS -->
+    <script src="{{asset('assets/site/js/vendor/modernizr.min.js')}}"></script>
+    <!-- jQuery JS -->
+    <script src="{{asset('assets/site/js/vendor/jquery.js')}}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{asset('assets/site/js/vendor/popper.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/slick.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/js.cookie.js')}}"></script>
+    <!-- <script src="{{asset('assets/site/js/vendor/jquery.style.switcher.js')}}"></script> -->
+    <script src="{{asset('assets/site/js/vendor/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/jquery.ui.touch-punch.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/jquery.countdown.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/sal.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/imagesloaded.pkgd.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/counterup.js')}}"></script>
+    <script src="{{asset('assets/site/js/vendor/waypoints.min.js')}}"></script>
+
+    <!-- Main JS -->
+    <script src="{{asset('assets/site/js/main.js')}}"></script>
+
+    @yield('script')
+
 </body>
+
 
 </html>

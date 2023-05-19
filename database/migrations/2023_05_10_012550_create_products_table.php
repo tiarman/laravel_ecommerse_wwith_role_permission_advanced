@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -38,9 +39,10 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('featured')->nullable();
             $table->string('today_deal')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default(Product::$statusArrays[0]);
             $table->string('flash_deal_id')->nullable();
             $table->string('cash_on_delivery')->nullable();
+            $table->string('set_to_banner')->default(Product::$setToBannerArrays[1]);
 
             $table->integer('admin_id')->nullable();
             $table->timestamps();

@@ -32,7 +32,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('site.index');
 // })->name('home');
 
+
+
 Route::get('/', [SiteController::class, 'home'])->name('home');
+
+Route::get('/shop', function () {
+    return view('site.shop');
+})->name('shop');
+
+Route::get('/product_details/{name}', [SiteController::class, 'product_details'])->name('product_details');
+
 
 
 
@@ -57,6 +66,8 @@ Route::middleware([
         Route::post('/update/coupon/status', [CouponController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.coupon.status');
         Route::post('/update/pickuppoint/status', [PickupPointController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.pickuppoint.status');
         Route::post('/update/product/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.status');
+        Route::post('/update/product/featured', [ProductController::class, 'ajaxUpdateFeatured'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.featured');
+        Route::post('/update/product/today_deal', [ProductController::class, 'ajaxUpdatedeal'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.today_deal');
     });
 
 
