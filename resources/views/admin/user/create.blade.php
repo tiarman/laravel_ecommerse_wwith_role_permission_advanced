@@ -27,14 +27,27 @@
               @endif
               <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="control-label">User Name <span class="text-danger">*</span></label>
+                          <input type="text" name="username" placeholder="username" required value="{{ old('username') }}"
+                                 class="form-control @error('username') is-invalid @enderror">
+                          @error('username')
+                          <strong class="text-danger">{{ $errors->first('username') }}</strong>
+                          @enderror
+                        </div>
+                      </div>
+                </div>
                 <div class="row">
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <label class="control-label">Name <span class="text-danger">*</span></label>
-                      <input type="text" name="name" placeholder="Name" required value="{{ old('name') }}"
-                             class="form-control @error('name') is-invalid @enderror">
-                      @error('name')
-                      <strong class="text-danger">{{ $errors->first('name') }}</strong>
+                      <label class="control-label">Full Name <span class="text-danger">*</span></label>
+                      <input type="text" name="full_name" placeholder="full_name" required value="{{ old('full_name') }}"
+                             class="form-control @error('full_name') is-invalid @enderror">
+                      @error('full_name')
+                      <strong class="text-danger">{{ $errors->first('full_name') }}</strong>
                       @enderror
                     </div>
                   </div>

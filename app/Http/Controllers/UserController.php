@@ -49,7 +49,8 @@ class UserController extends Controller {
   public function store(Request $request) {
     $message = '<strong>Congratulations!!!</strong> User successfully';
     $rules = [
-      'name' => 'required|string',
+      'username' => 'required|string',
+      'full_name' => 'required|string',
       'password' => 'required|string|min:' . User::$minimumPasswordLength,
       'role' => 'required|numeric|exists:roles,id',
       'status' => ['required', Rule::in(User::$statusArrays)],
@@ -69,7 +70,8 @@ class UserController extends Controller {
     $request->validate($rules);
 
     try {
-      $user->name = $request->name;
+      $user->username = $request->username;
+      $user->full_name = $request->full_name;
       $user->email = $request->email;
       $user->phone = $request->phone;
       if ($request->password) {

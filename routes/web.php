@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChildCategoryController;
@@ -46,7 +47,8 @@ Route::get('/product_details/{name}', [SiteController::class, 'product_details']
 
 
 
-
+Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
+Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('register');
 
 
 

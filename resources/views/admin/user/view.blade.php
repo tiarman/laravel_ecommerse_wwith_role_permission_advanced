@@ -38,7 +38,8 @@
                   <thead>
                   <tr>
                     <th width="50">#</th>
-                    <th>Name</th>
+                    <th>User Name</th>
+                    <th>Full Name</th>
                     <th>Email</th>
                     <th>Type</th>
                     <th width="200">Created At</th>
@@ -50,7 +51,8 @@
                   @foreach($users as $key => $val)
                     <tr class="@if(($key%2) == 0)gradeX @else gradeC @endif">
                       <td class="p-1">{{ ($key+1) }}</td>
-                      <td class="p-1 text-capitalize">{{ $val->name }}</td>
+                      <td class="p-1 text-capitalize">{{ $val->username }}</td>
+                      <td class="p-1 text-capitalize">{{ $val->full_name }}</td>
                       <td class="p-1">{{ $val->email }}</td>
                       <td class="p-1 text-capitalize">{{ $val->type }}</td>
                       <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>

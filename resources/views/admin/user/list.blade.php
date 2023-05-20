@@ -40,7 +40,8 @@
                 <thead>
                 <tr>
                   <th width="10">#</th>
-                  <th>Name</th>
+                  <th>User Name</th>
+                    <th>Full Name</th>
                   <th>Email</th>
                   <th>Phone</th>
                   <th width="20">Role</th>
@@ -55,7 +56,8 @@
                 @foreach($users as $key => $val)
                   <tr class="@if(($key%2) == 0)gradeX @else gradeC @endif">
                     <td class="p-1">{{ ($key+1) }}</td>
-                    <td class="p-1 text-capitalize">{{ $val->name }}</td>
+                    <td class="p-1 text-capitalize">{{ $val->username }}</td>
+                    <td class="p-1 text-capitalize">{{ $val->full_name }}</td>
                     <td class="p-1">{{ $val->email }}</td>
                     <td class="p-1">{{ $val->phone }}</td>
                     <td class="p-1 text-capitalize">{{ \App\Helper\CustomHelper::userRoleName($val) }}</td>
