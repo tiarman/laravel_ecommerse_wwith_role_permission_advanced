@@ -7,6 +7,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PickupPointController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SubCategoryController;
@@ -41,6 +42,10 @@ Route::get('/shop', function () {
 })->name('shop');
 
 Route::get('/product_details/{name}', [SiteController::class, 'product_details'])->name('product_details');
+
+
+
+
 
 
 
@@ -183,6 +188,16 @@ Route::middleware([
             Route::delete('/destroy', [ProductController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
             Route::get('/list', [ProductController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
         });
+
+          #Review
+  Route::prefix('review')->name('review.')->group(function () {
+    Route::get('/create', [ReviewController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
+    Route::post('/store', [ReviewController::class, 'store'])->middleware('role_or_permission:Super Admin|Customer|Store Slider')->name('store');
+    Route::get('/manage/{id}', [ReviewController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
+    Route::get('/view', [ReviewController::class, 'view'])->middleware('role_or_permission:Super Admin|View Slider')->name('view');
+    Route::delete('/destroy', [ReviewController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
+    Route::get('/list', [ReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
+});
 
 
 

@@ -216,7 +216,14 @@
 
 
                                 <li><a href="contact.html">Contact</a></li>
+                                @guest()
                                 <li><a href="{{route('login')}}">Login</a></li>
+
+                                @else
+                                <li><a href="{{route('dashboard')}}">Dashboard</a></li>
+                                <li><a href="{{route('logout')}}">Logout</a></li>
+
+                                @endguest
                             </ul>
                         </nav>
                         <!-- End Mainmanu Nav -->

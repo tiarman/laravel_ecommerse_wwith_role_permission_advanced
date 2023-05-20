@@ -66,5 +66,29 @@ class PermissionSeeder extends Seeder
         'name' => 'View User'
       ]);
 
+
+
+      //      Customer
+      Permission::create([
+        'type' => 'Customer',
+        'name' => 'List Of Customer'
+      ]);
+      Permission::create([
+        'type' => 'Customer',
+        'name' => 'Create Customer'
+      ]);
+      Permission::create([
+        'type' => 'Customer',
+        'name' => 'Manage Customer'
+      ]);
+      Permission::create([
+        'type' => 'Customer',
+        'name' => 'Delete Customer'
+      ]);
+      Permission::create([
+        'type' => 'Customer',
+        'name' => 'View Customer'
+      ]);
+
     }
 }

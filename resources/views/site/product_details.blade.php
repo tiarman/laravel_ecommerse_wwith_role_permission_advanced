@@ -91,11 +91,11 @@
                                         <i class="far fa-star"></i>
                                     </div>
                                     <div class="review-link">
-                                        <a href="#">(<span>2</span> customer reviews)</a>
+                                        <a href="#">(<span>{{$totalreview}}</span> customer reviews)</a>
                                     </div>
                                 </div>
                                 <ul class="product-meta">
-                                    <li><i class="fal fa-check"></i>In stock</li>
+                                    <li><i class="fal fa-check"></i>{{$product->id}}</li>
                                     <li><i class="fal fa-check"></i>Free delivery available</li>
                                     <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
                                 </ul>
@@ -156,6 +156,17 @@
             </div>
         </div>
         <!-- End .single-product-thumb -->
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="woocommerce-tabs wc-tabs-wrapper bg-vista-white">
             <div class="container">
@@ -279,156 +290,187 @@
                             <div class="row">
                                 <div class="col-lg-6 mb--40">
                                     <div class="axil-comment-area pro-desc-commnet-area">
-                                        <h5 class="title">01 Review for this product</h5>
+                                        <h5 class="title">All Review for this product</h5>
                                         <ul class="comment-list">
                                             <!-- Start Single Comment  -->
-                                            <li class="comment">
-                                                <div class="comment-body">
-                                                    <div class="single-comment">
-                                                        <div class="comment-img">
-                                                            <img src="{{asset('assets/site/images/blog/author-image-4.png')}}" alt="Author Images">
-                                                        </div>
-                                                        <div class="comment-inner">
-                                                            <h6 class="commenter">
-                                                                <a class="hover-flip-item-wrapper" href="#">
-                                                                    <span class="hover-flip-item">
-                                                                        <span data-text="Cameron Williamson">Eleanor Pena</span>
-                                                                    </span>
-                                                                </a>
-                                                                <span class="commenter-rating ratiing-four-star">
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star empty-rating"></i></a>
-                                                                </span>
-                                                            </h6>
-                                                            <div class="comment-text">
-                                                                <p>“We’ve created a full-stack structure for our working workflow processes, were from the funny the century initial all the made, have spare to negatives. ” </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- End Single Comment  -->
+                                            @guest
+                                                <h4 style="color: red">Please Login first if you see the review</h4>
+                                                @else
 
-                                            <!-- Start Single Comment  -->
-                                            <li class="comment">
-                                                <div class="comment-body">
-                                                    <div class="single-comment">
-                                                        <div class="comment-img">
-                                                            <img src="{{asset('assets/site/images/blog/author-image-4.png')}}" alt="Author Images">
-                                                        </div>
-                                                        <div class="comment-inner">
-                                                            <h6 class="commenter">
-                                                                <a class="hover-flip-item-wrapper" href="#">
-                                                                    <span class="hover-flip-item">
-                                                                        <span data-text="Rahabi Khan">Courtney Henry</span>
-                                                                    </span>
-                                                                </a>
-                                                                <span class="commenter-rating ratiing-four-star">
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                </span>
-                                                            </h6>
-                                                            <div class="comment-text">
-                                                                <p>“We’ve created a full-stack structure for our working workflow processes, were from the funny the century initial all the made, have spare to negatives. ”</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- End Single Comment  -->
 
-                                            <!-- Start Single Comment  -->
-                                            <li class="comment">
-                                                <div class="comment-body">
-                                                    <div class="single-comment">
-                                                        <div class="comment-img">
-                                                            <img src="{{asset('assets/site/images/blog/author-image-5.png')}}" alt="Author Images">
-                                                        </div>
-                                                        <div class="comment-inner">
-                                                            <h6 class="commenter">
-                                                                <a class="hover-flip-item-wrapper" href="#">
-                                                                    <span class="hover-flip-item">
-                                                                        <span data-text="Rahabi Khan">Devon Lane</span>
+                                                @foreach ($review as $val )
+
+
+
+                                                <li class="comment">
+                                                    <div class="comment-body">
+                                                        <div class="single-comment">
+                                                            <div class="comment-img">
+                                                                <img src="{{asset('assets/site/images/blog/author-image-4.png')}}" alt="Author Images">
+                                                            </div>
+                                                            <div class="comment-inner">
+                                                                <div>
+                                                                    <a class="hover-flip-item-wrapper" href="#">
+                                                                        <span class="hover-flip-item">
+                                                                            <span data-text="Cameron Williamson">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</span>
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                                <h6 class="commenter">
+
+                                                                    <a class="hover-flip-item-wrapper" href="#">
+                                                                        <span class="hover-flip-item">
+                                                                            <span data-text="Cameron Williamson">{{$val->user->name}}</span>
+                                                                        </span>
+                                                                    </a>
+                                                                    <span class="commenter-rating ratiing-four-star">
+                                                                        @if($val->rating=='1')
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        @elseif ($val->rating=='2')
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        @elseif ($val->rating=='3')
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        @elseif ($val->rating=='4')
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        @elseif ($val->rating=='5')
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+
+                                                                        @endif
+
                                                                     </span>
-                                                                </a>
-                                                                <span class="commenter-rating ratiing-four-star">
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                    <a href="#"><i class="fas fa-star"></i></a>
-                                                                </span>
-                                                            </h6>
-                                                            <div class="comment-text">
-                                                                <p>“We’ve created a full-stack structure for our working workflow processes, were from the funny the century initial all the made, have spare to negatives. ” </p>
+                                                                </h6>
+                                                                <div class="comment-text">
+                                                                    <p>“{{$val->review}}” </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <!-- End Single Comment  -->
+                                                </li>
+                                                @endforeach
+                                                <!-- End Single Comment  -->
+
+                                            @endguest
+
+
+
+
+
+
+
                                         </ul>
                                     </div>
                                     <!-- End .axil-commnet-area -->
                                 </div>
                                 <!-- End .col -->
+
+@php
+    $review_5 = App\Models\Review::where('product_id', $product->id)->where('rating', 5)->count();
+    $review_4 = App\Models\Review::where('product_id', $product->id)->where('rating', 4)->count();
+    $review_3 = App\Models\Review::where('product_id', $product->id)->where('rating', 3)->count();
+    $review_2 = App\Models\Review::where('product_id', $product->id)->where('rating', 2)->count();
+    $review_1 = App\Models\Review::where('product_id', $product->id)->where('rating', 1)->count();
+
+
+
+    $average = App\Models\Review::where('product_id', $product->id)->sum('rating');
+
+
+
+
+
+@endphp
+
                                 <div class="col-lg-6 mb--40">
                                     <!-- Start Comment Respond  -->
                                     <div class="comment-respond pro-des-commend-respond mt--0">
                                         <h5 class="title mb--30">Add a Review</h5>
                                         <p>Your email address will not be published. Required fields are marked *</p>
+                                        <p>Average Rating : {{intval($average/5)}}</p>
                                         <div class="rating-wrapper d-flex-center mb--40">
                                             Your Rating <span class="require">*</span>
                                             <div class="reating-inner">
-                                                {{--  <a href="#"><i class="fal fa-star"></i></a>
-                                                <a href="#"><i class="fal fa-star"></i></a>
-                                                <a href="#"><i class="fal fa-star"></i></a>
-                                                <a href="#"><i class="fal fa-star"></i></a>
-                                                <a href="#"><i class="fal fa-star"></i></a>  --}}
-                                                <div class="form-group">
-                                                    <select name="rating" id="rating"  class="form-control @error('rating') is-invalid @enderror">
-                                                        <option value="">Choose rating</option>
 
-                                                            <option value="" >1</option>
-                                                            <option value="" >2</option>
-                                                            <option value="" >3</option>
-                                                            <option value="" >4</option>
-                                                            <option value="" >5</option>
+                                                <a href="#"><i class="fal fa-star"></i></a>
+                                                <a href="#"><i class="fal fa-star"></i></a>
+                                                <a href="#"><i class="fal fa-star"></i></a>
+                                                <a href="#"><i class="fal fa-star"></i></a>
+                                                <a href="#"><i class="fal fa-star"></i></a>
 
-                                                    </select>
-                                                    @error('rating')
-                                                    <strong class="text-danger">{{ $errors->first('rating') }}</strong>
-                                                    @enderror
-                                                </div>
                                             </div>
                                         </div>
+                                        @foreach($errors->all() as $message)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{!! $message !!}</strong>
+            </div>
+        </div>
+    </div>
+@endforeach
+                                         {{--  Crode  --}}
 
-                                        <form action="#">
+                                        <form id="data-form">
+                                            {{--  <form action="{{ route('review.store') }}" method="post" enctype="multipart/form-data">  --}}
+
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{$product->id}}">
+
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label>Other Notes (optional)</label>
-                                                        <textarea name="message" placeholder="Your Comment"></textarea>
+                                                        <textarea name="review" placeholder="Your Comment"></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-12">
+
+                                                <div class="col-12">
+                                                    <div class="form-group mb--40">
+                                                        <label>Select a rating</label>
+                                                        <select name="rating" class="select2">
+                                                            <option selected value="">Select a rating here</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                        <p class="b3 mt--10">This will be how your name will be displayed in the account section and in reviews</p>
+                                                    </div>
+                                                </div>
+                                                {{--  <div class="col-lg-6 col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label>Name <span class="require">*</span></label>
                                                         <input name="rating" id="name" type="text">
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-12">
+                                                </div>  --}}
+
+                                                {{--  <div class="col-lg-6 col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label>Email <span class="require">*</span> </label>
                                                         <input id="email" type="email">
                                                     </div>
-                                                </div>
+                                                </div>  --}}
                                                 <div class="col-lg-12">
                                                     <div class="form-submit">
                                                         <button type="submit" id="submit" class="axil-btn btn-bg-primary w-auto">Submit Comment</button>
@@ -439,6 +481,7 @@
                                     </div>
                                     <!-- End Comment Respond  -->
                                 </div>
+
                                 <!-- End .col -->
                             </div>
                         </div>
@@ -596,4 +639,51 @@
 @endsection
 
 @section('script1')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5"></script>
+<script>
+    $(document).ready(function() {
+        $('#data-form').submit(function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: '{{ route('review.store') }}',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Show SweetAlert Toast success notification
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.title,
+                        text: response.message,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+
+                    // Reset the form
+                    $('#data-form')[0].reset();
+                },
+                error: function(xhr) {
+                    // Show SweetAlert Toast error notification
+                    Swal.fire({
+                        icon: 'error',
+                        title: xhr.responseJSON.error ? xhr.responseJSON.title : 'Error',
+                        text: xhr.responseJSON.message,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection

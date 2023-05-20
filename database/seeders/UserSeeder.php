@@ -23,7 +23,16 @@ class UserSeeder extends Seeder
         'password' => bcrypt('12345600'),
         'status' => User::$statusArrays[1]
       ]);
+
+      $customer = User::create([
+        'name' => 'Customer',
+        'email' => 'customer@rast.com',
+        'phone' => '01797325120',
+        'password' => bcrypt('12345600'),
+        'status' => User::$statusArrays[1]
+      ]);
       $user->assignRole('Super Admin');
+      $customer->assignRole('Customer');
       $faker = Factory::create();
       for ($i=1;$i<=10; $i++){
         $user = User::create([

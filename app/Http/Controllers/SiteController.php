@@ -6,6 +6,7 @@ use App\Helper\RedirectHelper;
 use App\Models\Categories;
 use App\Models\ChildCategory;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -70,8 +71,11 @@ public function product_details($name = null, $id=NULL)
 
     if ($product = Product::where('name', $name)->where('status', Product::$statusArrays[0])->first()){
         $related_product = Product::where('subcategory_id', $product->subcategory_id)->take(10)->get();
+        $review = Review::where('product_id', $product->id)->get();
+        $totalreview = Review::where('product_id', $product->id)->count();
+        // return $totalreview;
         //    return $related_product;
-        return view('site.product_details', compact('product', 'related_product'));
+        return view('site.product_details', compact('product', 'related_product', 'review', 'totalreview'));
     }
     return RedirectHelper::backWithWarning('<strong>Sorry!!! </strong> Product not found.');
 }
