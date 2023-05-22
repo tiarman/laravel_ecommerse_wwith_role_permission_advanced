@@ -101,18 +101,7 @@
                                 </a>
                             </div>
                             <ul class="mainmenu">
-                                <li class="menu-item-has-children">
-                                    <a href="#">Home</a>
-                                    <ul class="axil-submenu">
-                                        <li><a href="index-1.html">Home - Electronics</a></li>
-                                        <li><a href="index-2.html">Home - NFT</a></li>
-                                        <li><a href="index-3.html">Home - Fashion</a></li>
-                                        <li><a href="index-4.html">Home - Jewellery</a></li>
-                                        <li><a href="index-5.html">Home - Furniture</a></li>
-                                        <li><a href="index-7.html">Home - Multipurpose</a></li>
-                                        <li><a href="https://new.axilthemes.com/demo/template/etrade-rtl/">RTL Version</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="{{route('home')}}">Home</a></li>
                                 <li class="menu-item-has-children">
                                     <a href="#">Shop</a>
                                     <ul class="axil-submenu">
@@ -132,32 +121,19 @@
                                     <ul class="axil-submenu">
                                         <li><a href="wishlist.html">Wishlist</a></li>
                                         <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="my-account.html">Account</a></li>
-                                        <li><a href="sign-up.html">Sign Up</a></li>
-                                        <li><a href="sign-in.html">Sign In</a></li>
-                                        <li><a href="forgot-password.html">Forgot Password</a></li>
-                                        <li><a href="reset-password.html">Reset Password</a></li>
-                                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                        <li><a href="coming-soon.html">Coming Soon</a></li>
-                                        <li><a href="404.html">404 Error</a></li>
-                                        <li><a href="typography.html">Typography</a></li>
+
                                     </ul>
                                 </li>
-                                <li><a href="about-us.html">About</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Blog</a>
-                                    <ul class="axil-submenu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-grid.html">Blog Grid</a></li>
-                                        <li><a href="blog-details.html">Standard Post</a></li>
-                                        <li><a href="blog-gallery.html">Gallery Post</a></li>
-                                        <li><a href="blog-video.html">Video Post</a></li>
-                                        <li><a href="blog-audio.html">Audio Post</a></li>
-                                        <li><a href="blog-quote.html">Quote Post</a></li>
-                                    </ul>
-                                </li>
+
                                 <li><a href="contact.html">Contact</a></li>
+                                @guest()
+                                <li><a href="{{route('login')}}">Login</a></li>
+
+                                @else
+                                <li><a href="{{route('dashboard')}}">Dashboard</a></li>
+                                <li><a href="{{route('logout')}}">Logout</a></li>
+
+                                @endguest
                             </ul>
                         </nav>
                         <!-- End Mainmanu Nav -->
@@ -199,15 +175,23 @@
                                         <li>
                                             <a href="#">Initiate return</a>
                                         </li>
+                                        @guest()
+                                        <a href="{{route('login')}}" class="axil-btn btn-bg-primary">Login</a>
+
+                                        @else
                                         <li>
-                                            <a href="#">Support</a>
+                                            <a href="{{route('dashboard')}}">Dashboard</a>
                                         </li>
                                         <li>
-                                            <a href="#">Language</a>
+                                            <a href="{{route('logout')}}">Log Out</a>
                                         </li>
+                                        @endguest
                                     </ul>
-                                    <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
-                                    <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+
+
+
+
+                                    <div class="reg-footer text-center">No account yet? <a href="{{route('register')}}" class="btn-link">REGISTER HERE.</a></div>
                                 </div>
                             </li>
                             <li class="axil-mobile-toggle">

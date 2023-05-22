@@ -165,38 +165,7 @@
                                 </div>
 
 
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class="control-label">Purchase Price</label>
-                                            <input type="text" name="purchase_price" placeholder="Enter purchase price" value="{{ old('purchase_price') }}"
-                                                   class="form-control @error('purchase_price') is-invalid @enderror">
-                                            @error('purchase_price')
-                                            <strong class="text-danger">{{ $errors->first('purchase_price') }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class="control-label">Selling Price</label>
-                                            <input type="text" name="selling_price" placeholder="Enter selling price" value="{{ old('selling_price') }}"
-                                                   class="form-control @error('selling_price') is-invalid @enderror">
-                                            @error('selling_price')
-                                            <strong class="text-danger">{{ $errors->first('selling_price') }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class="control-label">Discount Price</label>
-                                            <input type="text" name="discount_price" placeholder="Enter discount price" value="{{ old('discount_price') }}"
-                                                   class="form-control @error('discount_price') is-invalid @enderror">
-                                            @error('discount_price')
-                                            <strong class="text-danger">{{ $errors->first('discount_price') }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -247,6 +216,29 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Video Embed</label>
+                                            <input type="text" name="video" placeholder=" video" value="{{ old('video') }}"
+                                                   class="form-control @error('video') is-invalid @enderror">
+                                            @error('video')
+                                            <strong class="text-danger">{{ $errors->first('video') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Thumbnail <label class="text-danger">*</label></label>
+                                        <input type="file" name="image"  placeholder="Slider image" value="{{ old('image') }}"
+                                               class="form-control @error('image') is-invalid @enderror">
+                                        @error('image')
+                                        <strong class="text-danger">{{ $errors->first('image') }}</strong>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -311,28 +303,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Video Embed</label>
-                                                <input type="text" name="video" placeholder=" video" value="{{ old('video') }}"
-                                                       class="form-control @error('video') is-invalid @enderror">
-                                                @error('video')
-                                                <strong class="text-danger">{{ $errors->first('video') }}</strong>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Thumbnail <label class="text-danger">*</label></label>
-                                            <input type="file" name="image"  placeholder="Slider image" value="{{ old('image') }}"
-                                                   class="form-control @error('image') is-invalid @enderror">
-                                            @error('image')
-                                            <strong class="text-danger">{{ $errors->first('image') }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -350,6 +321,41 @@
                                           @enderror
                                         </div>
                                       </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Purchase Price</label>
+                                            <input type="text" name="purchase_price" placeholder="Enter purchase price" value="{{ old('purchase_price') }}"
+                                                   class="form-control @error('purchase_price') is-invalid @enderror">
+                                            @error('purchase_price')
+                                            <strong class="text-danger">{{ $errors->first('purchase_price') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Selling Price</label>
+                                            <input type="text" name="selling_price" placeholder="Enter selling price" value="{{ old('selling_price') }}"
+                                                   class="form-control @error('selling_price') is-invalid @enderror">
+                                            @error('selling_price')
+                                            <strong class="text-danger">{{ $errors->first('selling_price') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Discount Price</label>
+                                            <input type="text" name="discount_price" placeholder="Enter discount price" value="{{ old('discount_price') }}"
+                                                   class="form-control @error('discount_price') is-invalid @enderror">
+                                            @error('discount_price')
+                                            <strong class="text-danger">{{ $errors->first('discount_price') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
 
 
@@ -469,7 +475,7 @@
 
 <script>
     $(document).ready(function () {
-      $('.select2').select2()
+
 
       $('.clear-file').click(function () {
         $('#image_upload').val('').change()

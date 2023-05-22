@@ -43,6 +43,8 @@ Route::get('/shop', function () {
 })->name('shop');
 
 Route::get('/product_details/{name}', [SiteController::class, 'product_details'])->name('product_details');
+Route::get('/product/{productId}/file/{id}/delete', [ProductController::class, 'productFileDelete'])->name('product.file.delete');
+
 
 
 

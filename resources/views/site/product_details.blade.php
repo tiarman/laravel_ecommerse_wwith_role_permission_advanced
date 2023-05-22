@@ -20,51 +20,36 @@
                             <div class="col-lg-10 order-lg-2">
                                 <div class="single-product-thumbnail-wrap zoom-gallery">
                                     <div class="single-product-thumbnail product-large-thumbnail-3 axil-product">
+
+                                        @foreach($product_file as $val)
                                         <div class="thumbnail">
-                                            <a href="{{asset('assets/site/images/product/product-big-01.png')}}" class="popup-zoom">
-                                                <img src="{{asset('assets/site/images/product/product-big-01.png')}}" alt="Product Images">
+                                            <a href="{{ asset($val->file) }}" class="popup-zoom">
+                                                <img src="{{ asset($val->file) }}" alt="Product Images">
                                             </a>
                                         </div>
-                                        <div class="thumbnail">
-                                            <a href="{{asset('assets/site/images/product/product-big-02.png')}}" class="popup-zoom">
-                                                <img src="{{asset('assets/site/images/product/product-big-02.png')}}" alt="Product Images">
-                                            </a>
-                                        </div>
-                                        <div class="thumbnail">
-                                            <a href="{{asset('assets/site/images/product/product-big-03.png')}}" class="popup-zoom">
-                                                <img src="{{asset('assets/site/images/product/product-big-03.png')}}" alt="Product Images">
-                                            </a>
-                                        </div>
-                                        <div class="thumbnail">
-                                            <a href="{{asset('assets/site/images/product/product-big-02.png')}}" class="popup-zoom">
-                                                <img src="{{asset('assets/site/images/product/product-big-02.png')}}" alt="Product Images">
-                                            </a>
-                                        </div>
+                                        @endforeach
+
                                     </div>
                                     <div class="label-block">
                                         <div class="product-badget">20% OFF</div>
                                     </div>
+                                    {{--  @foreach ($product as $key=>$val )  --}}
                                     <div class="product-quick-view position-view">
-                                        <a href="{{asset('assets/site/images/product/product-big-01.png')}}" class="popup-zoom">
+                                        <a href="{{ asset($product->image) }}" class="popup-zoom">
                                             <i class="far fa-search-plus"></i>
                                         </a>
                                     </div>
+                                    {{--  @endforeach  --}}
                                 </div>
                             </div>
                             <div class="col-lg-2 order-lg-1">
                                 <div class="product-small-thumb-3 small-thumb-wrapper">
+                                    @foreach($product_file as $val)
                                     <div class="small-thumb-img">
-                                        <img src="{{asset('assets/site/images/product/product-thumb/thumb-08.png')}}" alt="thumb image">
+                                        <img src="{{ asset($val->file) }}" alt="thumb image">
                                     </div>
-                                    <div class="small-thumb-img">
-                                        <img src="{{asset('assets/site/images/product/product-thumb/thumb-07.png')}}" alt="thumb image">
-                                    </div>
-                                    <div class="small-thumb-img">
-                                        <img src="{{asset('assets/site/images/product/product-thumb/thumb-09.png')}}" alt="thumb image">
-                                    </div>
-                                    <div class="small-thumb-img">
-                                        <img src="{{asset('assets/site/images/product/product-thumb/thumb-07.png')}}" alt="thumb image">
-                                    </div>
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>
@@ -104,7 +89,20 @@
                                 <div class="product-variations-wrapper">
 
                                     <!-- Start Product Variation  -->
-                                    <div class="product-variation">
+                                    <div class="col-6">
+                                        <div class="form-group mb--40">
+                                            <label style="color: #3577f0">Select Color</label>
+                                            <select name="rating" class="select2">
+                                                <option selected disabled >Select Color</option>
+                                                @foreach ($selectedColors as $col )
+                                                <option value="1">{{$col}}</option>
+                                                @endforeach
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{--  <div class="product-variation">
                                         <h6 class="title">Colors:</h6>
                                         <div class="color-variant-wrapper">
                                             <ul class="color-variant">
@@ -116,7 +114,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div>  --}}
                                     <!-- End Product Variation  -->
 
                                     <!-- Start Product Variation  -->

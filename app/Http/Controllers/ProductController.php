@@ -9,6 +9,7 @@ use App\Models\Categories;
 use App\Models\ChildCategory;
 use App\Models\PickupPoint;
 use App\Models\Product;
+use App\Models\ProductFile;
 use App\Models\SubCategory;
 use App\Models\WareHouse;
 use Illuminate\Database\QueryException;
@@ -65,6 +66,8 @@ class ProductController extends Controller
             $data['brand'] = Brand::get();
             $data['pickuppoint'] = PickupPoint::get();
             $data['warehuses'] = WareHouse::get();
+            $data['product_file'] = ProductFile::where('product_id', $id)->get();
+            // return $datas;
             return view('admin.product.manage', $data);
         }
         return RedirectHelper::routeWarningWithParams('product.list', '<strong>Sorry!!!</strong> Product not found');
@@ -167,6 +170,23 @@ class ProductController extends Controller
                     CustomHelper::deleteFile($oldImage);
                 }
 
+
+                if ($request->hasFile('image_upload')) {
+                    foreach ($request->file('image_upload') as $k => $file) {
+                      $file = CustomHelper::storeImage($file, '/Product/' . $product->id . '/');
+                      if ($file) {
+                        $fileUpload = new ProductFile();
+                        $fileUpload->description = $request->image_filename[$k];
+                        $fileUpload->type = $request->image_type[$k];
+                        $fileUpload->size = $request->image_size[$k];
+                        $fileUpload->file = $file;
+                        $fileUpload->product_id = $product->id;
+                        $fileUpload->save();
+                      }
+                    }
+                  }
+                  DB::commit();
+
                 return RedirectHelper::routeSuccessWithParams('product.list', $message);
             }
             return RedirectHelper::backWithInput();
@@ -247,4 +267,21 @@ class ProductController extends Controller
             }
         }
     }
+
+
+
+      /**
+   * @param $id
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function productFileDelete($productId = null, $id = null): \Illuminate\Http\RedirectResponse {
+    if ($file = ProductFile::where('id', $id)->where('product_id', $productId)->first()) {
+      $filePath = $file->file;
+      if ($file->delete()) {
+        CustomHelper::deleteFile($filePath);
+        return RedirectHelper::back('<strong>Congratulation!!! </strong> File Successfully Deleted.');
+      }
+    }
+    return RedirectHelper::backWithWarning('<strong>Sorry!!! </strong> Action not completed.');
+  }
 }
