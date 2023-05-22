@@ -92,4 +92,11 @@ public function product_details($name = null, $id=NULL)
 
 
 
+public function productQuickView($id){
+    $product = Product::where('id', $id)->first();
+    return view('site.quick_view', compact('product'));
+}
+
+
+
 }

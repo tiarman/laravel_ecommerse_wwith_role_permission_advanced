@@ -42,6 +42,7 @@ Route::get('/shop', function () {
     return view('site.shop');
 })->name('shop');
 
+Route::get('/quick_view/{id}', [SiteController::class, 'productQuickView'])->name('quick_view');
 Route::get('/product_details/{name}', [SiteController::class, 'product_details'])->name('product_details');
 Route::get('/product/{productId}/file/{id}/delete', [ProductController::class, 'productFileDelete'])->name('product.file.delete');
 

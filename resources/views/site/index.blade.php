@@ -96,13 +96,13 @@
 
 
 
-                                        <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                        <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal{{$val->id}}"><i class="far fa-eye"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="product-content">
                                 <div class="inner">
-                                    <h5 class="title"><a href="single-product.html">{{ $val->name }}</a></h5>
+                                    <h5 class="title"><a href="{{route('product_details', $val->name)}}">{{ $val->name }}</a></h5>
                                     <div class="product-price-variant">
                                         @if ($val->discount_price==NULL)
                                 <span class="price current-price">${{$val->selling_price}}</span>
@@ -127,9 +127,9 @@
     <!-- End Flash Sale Area  -->
 
 
-
+    @foreach ($product as $val )
     <!-- Product Quick View Modal Start -->
-    <div class="modal fade quick-view-product" id="quick-view-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade quick-view-product" id="quick-view-modal{{$val->id}}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -143,12 +143,13 @@
                                     <div class="col-lg-10 order-lg-2">
                                         <div class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
                                             <div class="thumbnail">
+
                                                 <img src="{{asset('assets/site/images/product/product-big-01.png')}}" alt="Product Images">
                                                 <div class="label-block label-right">
                                                     <div class="product-badget">20% OFF</div>
                                                 </div>
                                                 <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-01.png')}}" class="popup-zoom">
+                                                    <a href="{{asset('assets/site/images/product/product-big-01.png')}}" class="popup-zoom">
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
@@ -159,7 +160,7 @@
                                                     <div class="product-badget">20% OFF</div>
                                                 </div>
                                                 <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-02.png')}}" class="popup-zoom">
+                                                    <a href="{{asset('assets/site/images/product/product-big-02.png')}}" class="popup-zoom">
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
@@ -170,7 +171,7 @@
                                                     <div class="product-badget">20% OFF</div>
                                                 </div>
                                                 <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-03.png')}}" class="popup-zoom">
+                                                    <a href="{{asset('assets/site/images/product/product-big-03.png')}}" class="popup-zoom">
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
@@ -270,6 +271,7 @@
         </div>
     </div>
     <!-- Product Quick View Modal End -->
+    @endforeach
 
 
 
