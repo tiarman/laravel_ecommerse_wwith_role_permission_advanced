@@ -12,6 +12,21 @@
 <main class="main-wrapper">
     <!-- Start Shop Area  -->
     <div class="axil-single-product-area axil-section-gap pb--0 bg-color-white">
+
+
+
+
+        <form action="{{ route('shopping.carts.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+
+
+            <input type="hidden" value="{{ $product->id }}" name="id">
+                                        <input type="hidden" value="{{ $product->name }}" name="name">
+                                        <input type="hidden" value="{{ $product->selling_price }}" name="selling_price">
+                                        <input type="hidden" value="{{ $product->image }}"  name="image">
+                                        <input type="hidden" value="{{ $product->stock_quantity }}"  name="stock_quantity">
+                                        <input type="hidden" value="{{ $product->subcategory_id }}"  name="subcategory_id">
         <div class="single-product-thumb mb--40">
             <div class="container">
                 <div class="row">
@@ -140,8 +155,11 @@
 
                                     <!-- Start Product Action  -->
                                     <ul class="product-action d-flex-center mb--0">
-                                        <li class="add-to-cart"><a href="cart.html" class="axil-btn btn-bg-primary">Add to Cart</a></li>
+                                        <li type="submit" class="add-to-cart"><a type="submit"  class="axil-btn btn-bg-primary">Add to Cart</a></li>
                                         <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
+                                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                            Add to cart
+                                        </button>
                                     </ul>
                                     <!-- End Product Action  -->
 
@@ -153,6 +171,7 @@
                 </div>
             </div>
         </div>
+        </form>
         <!-- End .single-product-thumb -->
 
 

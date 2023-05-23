@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChildCategoryController;
 use App\Http\Controllers\CouponController;
@@ -203,6 +204,21 @@ Route::middleware([
     Route::delete('/destroy', [ReviewController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
     Route::get('/list', [ReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
 });
+
+
+    #Cart
+    Route::prefix('shopping')->name('shopping.')->group(function () {
+        Route::get('/cartlist', [CartController::class, 'cartList'])->name('cartlist');
+        Route::post('/carts', [CartController::class, 'addToCart'])->name('carts.store');
+        Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
+        // Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('remove');
+        Route::delete('/remove',[CartController::class, 'removeCart'])->name('remove');
+
+    });
+
+
+
+
 
 
 
