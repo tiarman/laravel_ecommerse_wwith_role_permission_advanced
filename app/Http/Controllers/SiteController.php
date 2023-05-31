@@ -10,6 +10,7 @@ use App\Models\ProductFile;
 use App\Models\Review;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller {
 
@@ -28,7 +29,7 @@ class SiteController extends Controller {
 
   public function logout() {
     \auth()->logout();
-    \session()->flush();
+    // \session()->flush();
     return redirect()->route('login');
   }
 
@@ -45,11 +46,46 @@ public function home(){
     $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
     $data ['childcategory'] = ChildCategory::where('status', '=', ChildCategory::$statusArrays[0])->get();
     $data ['product'] = Product::where('status', '=', Product::$statusArrays[0])->get();
+    // return $datas;
     $product = Product::where('status', '=', Product::$statusArrays[0])->get();
     $data['product_file'] = ProductFile::get();
+    $cartItems = \Cart::getContent();
+    // return $cartItems;
     // return $datas;
-    return view('site.index', $data);
 
+    // $datas ['product'] = Product::where('status', '=', Product::$statusArrays[0])->get();
+    // $datas['product_file'] = ProductFile::get();
+    // $datass['adtas'] = DB::table('products')
+    //         ->select('products.*', 'product_files.file')
+    //         ->join('product_files', 'products.id', '=', 'product_files.product_id')
+    //         ->get();
+    // $datass['product'] = DB::table('products')
+    // ->join('product_files', 'products.id', '=', 'product_files.product_id')
+    // ->select('product.*', 'product_files.file')
+    // ->get();
+    // $datass = DB::table('products')
+    //         ->join('product_files', 'products.id', '=', 'product_files.product_id')
+    //         ->select('products.*', 'product_files.type', 'product_files.name', 'product_files.description', 'product_files.file')
+    //         ->get();
+    // $datas = Product::with('productFiles')->get();
+
+    // dd($datass);
+
+
+
+
+
+    return view('site.index', $data, compact('cartItems'));
+
+}
+
+public function cartList()
+{
+    $cartItems = Cart::content();
+    // $data ['category'] = Category::where('status', '=', Category::$statusArray[0])->get();
+    // dd($cartItems);
+    return $cartItems;
+    return view('layouts.site', compact('cartItems'));
 }
 
 

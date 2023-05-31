@@ -212,9 +212,11 @@ Route::middleware([
         Route::post('/carts', [CartController::class, 'addToCart'])->name('carts.store');
         Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
         // Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('remove');
-        Route::delete('/remove',[CartController::class, 'removeCart'])->name('remove');
+        Route::delete('/remove/{id}',[CartController::class, 'removeCart'])->name('remove');
 
     });
+
+    Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');
 
 
 

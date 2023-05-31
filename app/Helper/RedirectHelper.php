@@ -69,6 +69,20 @@ class RedirectHelper
     return redirect()->route($route)->with('status', $status);
   }
 
+    /**
+   * @param $route
+   * @param string $message
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public static function routeSuccess2($route, string $message = '<strong>Congratulations!!!</strong>'): \Illuminate\Http\RedirectResponse
+  {
+//    AlertHelper::success($message);
+    $status = '<div class="alert alert-success show" role="alert">
+                ' . $message . '
+              </div>';
+    return redirect()->route($route)->with('status', $status);
+  }
+
   /**
    * @param $route
    * @param string $message

@@ -58,6 +58,7 @@
     <!-- End Slider Area -->
 
     <!-- Start Flash Sale Area  -->
+
     <div class="axil-new-arrivals-product-area fullwidth-container flash-sale-area bg-color-white axil-section-gap pb--0">
         <div class="container ml--xxl-0">
             <div class="product-area pb--50">
@@ -74,6 +75,17 @@
 
 
                     @foreach ($product as $val )
+                    <form action="{{ route('shopping.carts.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="hidden" value="{{ $val->id }}" name="id">
+                                        <input type="hidden" value="{{ $val->name }}" name="name">
+                                        <input type="hidden" value="{{ $val->selling_price }}" name="selling_price">
+                                        <input type="hidden" value="{{ $val->image }}"  name="image">
+                                        <input type="hidden" value="{{ $val->stock_quantity }}"  name="stock_quantity">
+                                        <input type="hidden" value="{{ $val->subcategory_id }}"  name="subcategory_id">
+
+
                     @if($val->today_deal=='yes')
                     <div class="slick-single-layout">
                         <div class="axil-product product-style-four">
@@ -87,7 +99,9 @@
                                 <div class="product-hover-action">
                                     <ul class="cart-action">
                                         <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                        <li class="select-option"><a href="cart.html">Add to Cart</a></li>
+                                        {{--  <li class="select-option"><button class="btn-bg-secondary" type="submit">Add to Cart</button></li>  --}}
+                                        <li class="select-option"><button type="submit" class="px-4 py-2 btn btn-success text-white bg-red-600 shadow rounded-full">Add to Cart</button></li>
+
 
 
 
@@ -118,12 +132,14 @@
                         </div>
                     </div>
                     @endif
+                </form>
                     @endforeach
-                    <!-- End .slick-single-layout -->
+                    <!-- End slick-single-layout -->
                 </div>
             </div>
         </div>
     </div>
+
     <!-- End Flash Sale Area  -->
 
 
@@ -1951,9 +1967,119 @@
 </div>
 
 
+<div class="cart-dropdown" id="cart-dropdown">
+    <div class="cart-content-wrap">
+        <div class="cart-header">
+            <h2 class="header-title">Cart review</h2>
+            <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-body">
+            <ul class="cart-item-list">
+
+@foreach ($cartItems as $key=>$vals)
+
+
+
+                <li class="cart-item">
+                    <div class="item-img">
+                        <a href="single-product.html"><img src="{{ asset($vals->attributes->image) }}" alt="Commodo Blown Lamp"></a>
+                        <button class="close-btn"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="item-content">
+                        <div class="product-rating">
+                            <span class="icon">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                            <span class="rating-number">(64)</span>
+                        </div>
+                        <h3 class="item-title"><a href="">{{$vals->name}}</a></h3>
+                        @if ($vals->discount_price==NULL)
+                        <span class="price current-price">${{$vals->selling_price}}</span>
+                        @else
+                        <span class="price old-price"><strike>${{$vals->selling_price}}</strike></span>
+
+                        <span class="price current-price">${{$vals->discount_price}}</span>
+                        @endif
+                        {{--  <div class="item-price"><span class="currency-symbol">$</span>155.00</div>  --}}
+                        <div class="pro-qty item-quantity">
+                            <input type="number" class="quantity-input" value="{{$vals->quantity}}">
+                        </div>
+                    </div>
+                </li>
+                @endforeach
+
+
+
+            </ul>
+        </div>
+        <div class="cart-footer">
+            <h3 class="cart-subtotal">
+                <span class="subtotal-title">Subtotal:</span>
+                <span class="subtotal-amount">$610.00</span>
+            </h3>
+            <div class="group-btn">
+                <a href="{{route('shopping.cartlist')}}" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
+                <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 @endsection
+{{--  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5"></script>  --}}
 
 @section('script')
+<script>
+    $(document).ready(function() {
+        $('#cart-form').submit(function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+            {{--  console.log('click', formData);  --}}
+
+            $.ajax({
+                url: '{{ route('shopping.carts.store') }}',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Show SweetAlert Toast success notification
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Congratulations!',
+                        text: 'Cart added successfully',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+
+                    // Reset the form
+                    $('#cart-form')[0].reset();
+                },
+                error: function(xhr) {
+                    // Show SweetAlert Toast error notification
+                    Swal.fire({
+                        icon: 'error',
+                        title: xhr.responseJSON.error ? xhr.responseJSON.title : 'Error',
+                        text: xhr.responseJSON.message,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection

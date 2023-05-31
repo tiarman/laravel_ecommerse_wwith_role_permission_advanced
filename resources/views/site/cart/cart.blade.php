@@ -7,8 +7,11 @@
 
 
 
-
-
+@if(session()->has('status'))
+<div style="text-align: center">
+    {!! session()->get('status') !!}
+</div>
+@endif
 <main class="main-wrapper">
 
     <!-- Start Cart Area  -->
@@ -23,10 +26,9 @@
                     <table class="table axil-product-table axil-cart-table mb--40">
                         <thead>
                             <tr>
-                                <th scope="col" class="product-remove"></th>
-                                <th scope="col" class="product-remove"></th>
+                                <th scope="col" class="product-remove">Remove</th>
+                                <th scope="col" class="product-remove">Image</th>
                                 <th scope="col" class="product-thumbnail">Product</th>
-                                <th scope="col" class="product-title"></th>
                                 <th scope="col" class="product-price">Price</th>
                                 <th scope="col" class="product-quantity">Quantity</th>
                                 <th scope="col" class="product-subtotal">Subtotal</th>
@@ -37,21 +39,23 @@
 
 
                             <tr>
-                                {{--  <td class="class="text-right md:table-cell">
-                                    <form action="{{ route('shopping.remove') }}" method="POST">
-                                        @method('DELETE')
+                                <td class="class="text-right md:table-cell">
+
+                                    <form action="{{ route('shopping.remove',$val->id) }}" method="post" enctype="multipart/form-data">
+                                         @method('DELETE')
                                         @csrf
                                         <input type="hidden" value="{{ $val->id }}" name="id">
                                         <button type="submit" class="px-4 py-2 btn btn-success text-white bg-red-600 shadow rounded-full">Remove</button>
                                     </form>
-                                </td>  --}}
-                                <td class="product-remove"><a href="{{ route('shopping.remove') }}" data-id="{{$val->id}}" id="removeProduct" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
-                                <td class="product-thumbnail"><a href="single-product.html"><img src="{{ asset($val->image) }}" alt="Digital Product"></a></td>
+                                </td>
+
+                                {{--  <td class="product-remove"><a href="{{route('shopping.remove', $val->id)}}" data-id="{{$val->id}}" id="removeProduct" class="remove-wishlist"><i class="fal fa-times"></i></a></td>  --}}
+                                <td class="product-thumbnail"><a href="single-product.html"><img src="{{ asset($val->attributes->image) }}" alt="Digital Product"></a></td>
                                 <td class="product-title"><a href="single-product.html">{{ $val->name }}</a></td>
                                 <td class="product-price" data-title="Price"><span class="currency-symbol">$</span>{{ $val->price }}</td>
                                 <td class="product-quantity" data-title="Qty">
                                     <div class="pro-qty">
-                                        <input type="number" class="quantity-input" value="{{$val->qty}}">
+                                        <input type="number" class="quantity-input" value="{{$val->quantity}}">
                                     </div>
                                 </td>
                                 <td class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">$</span>275.00</td>
@@ -186,4 +190,52 @@
 @section('script1')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5"></script>
+
+
+{{--  <script>
+    $(document).ready(function() {
+        $('#saveDatabase').submit(function(event) {
+            console.log("click");
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+            console.log('click', formData);
+
+            $.ajax({
+                url: '{{ route('shopping.remove') }}',
+                type: 'DELETE',
+                data: formData,
+                success: function(response) {
+                    // Show SweetAlert Toast success notification
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Congratulations!',
+                        text: 'Cart Remove Success',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+
+                    // Reset the form
+                    {{--  $('#cart-form')[0].reset();  --}}
+                },
+                error: function(xhr) {
+                    // Show SweetAlert Toast error notification
+                    Swal.fire({
+                        icon: 'error',
+                        title: xhr.responseJSON.error ? xhr.responseJSON.title : 'Error',
+                        text: xhr.responseJSON.message,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                }
+            });
+        });
+    });
+</script>  --}}
 @endsection

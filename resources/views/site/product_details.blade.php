@@ -16,7 +16,7 @@
 
 
 
-        <form action="{{ route('shopping.carts.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('shopping.carts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
 
@@ -155,11 +155,12 @@
 
                                     <!-- Start Product Action  -->
                                     <ul class="product-action d-flex-center mb--0">
-                                        <li type="submit" class="add-to-cart"><a type="submit"  class="axil-btn btn-bg-primary">Add to Cart</a></li>
-                                        <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
-                                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                        {{--  <li type="button" class="add-to-cart"><a type="submit"  class="axil-btn btn-bg-primary">Add to Cart new</a></li>  --}}
+                                        <button class="add-to-cart axil-btn btn-bg-primary">
                                             Add to cart
                                         </button>
+                                        <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
+
                                     </ul>
                                     <!-- End Product Action  -->
 
@@ -685,6 +686,52 @@
 
                     // Reset the form
                     $('#data-form')[0].reset();
+                },
+                error: function(xhr) {
+                    // Show SweetAlert Toast error notification
+                    Swal.fire({
+                        icon: 'error',
+                        title: xhr.responseJSON.error ? xhr.responseJSON.title : 'Error',
+                        text: xhr.responseJSON.message,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#cart-form').submit(function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+            {{--  console.log('click', formData);  --}}
+
+            $.ajax({
+                url: '{{ route('shopping.carts.store') }}',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Show SweetAlert Toast success notification
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Congratulations!',
+                        text: 'Cart added successfully',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+
+                    // Reset the form
+                    $('#cart-form')[0].reset();
                 },
                 error: function(xhr) {
                     // Show SweetAlert Toast error notification
