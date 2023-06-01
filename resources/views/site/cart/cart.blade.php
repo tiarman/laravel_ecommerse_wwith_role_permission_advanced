@@ -52,13 +52,23 @@
                                 {{--  <td class="product-remove"><a href="{{route('shopping.remove', $val->id)}}" data-id="{{$val->id}}" id="removeProduct" class="remove-wishlist"><i class="fal fa-times"></i></a></td>  --}}
                                 <td class="product-thumbnail"><a href="single-product.html"><img src="{{ asset($val->attributes->image) }}" alt="Digital Product"></a></td>
                                 <td class="product-title"><a href="single-product.html">{{ $val->name }}</a></td>
+
+
+                                {{--  @if ($product->discount_price==NULL)
+                                        <input type="hidden" value="{{ $product->selling_price }}" name="selling_price">
+                                        @else
+                                        <input type="hidden" value="{{ $product->discount_price }}" name="discount_price">
+                                        @endif  --}}
+
+
+
                                 <td class="product-price" data-title="Price"><span class="currency-symbol">$</span>{{ $val->price }}</td>
                                 <td class="product-quantity" data-title="Qty">
                                     <div class="pro-qty">
                                         <input type="number" class="quantity-input" value="{{$val->quantity}}">
                                     </div>
                                 </td>
-                                <td class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">$</span>275.00</td>
+                                <td class="product-gettotal" data-title="Gettotal"><span class="currency-symbol">$</span>{{\Cart::getTotal()}}</td>
                             </tr>
                             @endforeach
 
@@ -86,7 +96,7 @@
                                     <tbody>
                                         <tr class="order-subtotal">
                                             <td>Subtotal</td>
-                                            <td>$117.00</td>
+                                            <td>${{\Cart::getTotal()}}</td>
                                         </tr>
                                         <tr class="order-shipping">
                                             <td>Shipping</td>

@@ -80,7 +80,12 @@
 
                         <input type="hidden" value="{{ $val->id }}" name="id">
                                         <input type="hidden" value="{{ $val->name }}" name="name">
+                                        @if ($val->discount_price==NULL)
                                         <input type="hidden" value="{{ $val->selling_price }}" name="selling_price">
+                                        @else
+                                        <input type="hidden" value="{{ $val->discount_price }}" name="discount_price">
+                                        @endif
+
                                         <input type="hidden" value="{{ $val->image }}"  name="image">
                                         <input type="hidden" value="{{ $val->stock_quantity }}"  name="stock_quantity">
                                         <input type="hidden" value="{{ $val->subcategory_id }}"  name="subcategory_id">

@@ -39,18 +39,37 @@ class CartController extends Controller
         // return RedirectHelper::routeSuccess2('shopping.cartlist', $message);
         // return session()->all();
         // Log::info('Data received in addToCart:', $request->all());
+        if ($request->discount_price==NULL){
+            \Cart::add([
+                'id' => $request->id,
+                'name' => $request->name,
+                'price' => $request->selling_price,
+                'quantity' => 1,
+                'image' => $request->image,
+                'weight' => '1',
+                'qty' => '1',
+                'attributes' => array(
+                    'image' => $request->image,
+                    'discount_price' => $request->discount_price,
+                    'stock_quantity' => $request->stock_quantity,
+                    // 'user_id'=>$request->user_is,
+                    'subcategory_id' => $request->subcategory_id,
 
+                )
+            ]);
 
+        }else
         \Cart::add([
             'id' => $request->id,
             'name' => $request->name,
-            'price' => $request->selling_price,
+            'price' => $request->discount_price,
             'quantity' => 1,
             'image' => $request->image,
             'weight' => '1',
             'qty' => '1',
             'attributes' => array(
                 'image' => $request->image,
+                'discount_price' => $request->discount_price,
                 'stock_quantity' => $request->stock_quantity,
                 // 'user_id'=>$request->user_is,
                 'subcategory_id' => $request->subcategory_id,

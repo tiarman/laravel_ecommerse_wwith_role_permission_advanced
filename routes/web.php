@@ -55,7 +55,7 @@ Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name(
 Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('register');
 
 
-
+// Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 Route::get('/logout', [SiteController::class, 'logout'])->middleware('auth')->name('logout');
 Route::middleware([
     'auth:sanctum',

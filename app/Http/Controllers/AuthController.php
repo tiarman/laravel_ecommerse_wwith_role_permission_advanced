@@ -24,7 +24,7 @@ class AuthController extends Controller
             if (Auth::attempt($credential)) {
                 if (\auth()->user()->status !== User::$statusArrays[1]) {
                     Auth::logout();
-                    \Illuminate\Support\Facades\Session::flush();
+                    // \Illuminate\Support\Facades\Session::flush();
                     return RedirectHelper::backWithInput('<strong>Sorry!!!</strong> Your not a active user.');
                 }
                 return to_route('dashboard');

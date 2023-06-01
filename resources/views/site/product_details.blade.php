@@ -23,7 +23,11 @@
 
             <input type="hidden" value="{{ $product->id }}" name="id">
                                         <input type="hidden" value="{{ $product->name }}" name="name">
+                                        @if ($product->discount_price==NULL)
                                         <input type="hidden" value="{{ $product->selling_price }}" name="selling_price">
+                                        @else
+                                        <input type="hidden" value="{{ $product->discount_price }}" name="discount_price">
+                                        @endif
                                         <input type="hidden" value="{{ $product->image }}"  name="image">
                                         <input type="hidden" value="{{ $product->stock_quantity }}"  name="stock_quantity">
                                         <input type="hidden" value="{{ $product->subcategory_id }}"  name="subcategory_id">

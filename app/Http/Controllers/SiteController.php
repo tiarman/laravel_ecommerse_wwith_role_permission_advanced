@@ -120,6 +120,7 @@ public function product_details($name = null, $id=NULL)
         $ids2 = $product->color;
         $selectedColors = explode(',', $ids2 );
         // return $selectedColors;
+        // return $product;
         return view('site.product_details', compact('product', 'related_product', 'review', 'totalreview', 'product_file', 'selectedColors'));
 
     }
