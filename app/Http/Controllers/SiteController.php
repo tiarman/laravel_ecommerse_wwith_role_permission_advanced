@@ -135,5 +135,16 @@ public function productQuickView($id){
 }
 
 
+public function quickview($id){
+    $product = Product::where('id', $id)->first();
+    $ids2 = $product->color;
+        $selectedColors = explode(',', $ids2 );
+    $product_file = ProductFile::where('product_id', $product->id)->get();
+    // return response()->json($product);
+    // return $product;
+    return view('site.quickview', compact('product', 'selectedColors', 'product_file'));
+}
+
+
 
 }
